@@ -1,187 +1,116 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRA CỨU LƯƠNG</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="manifest" href="/manifest.json">
-    <style>
-        /* Đổi màu nền thành gradient tuyến tính, toàn font chữ thành Open Sans */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(to bottom, #FBD72B 0%, #FF8038 100%);
-            min-height: 100vh;
-            position: relative; /* Để hỗ trợ hình tròn nền */
-            overflow-x: hidden; /* Ngăn cuộn ngang nếu hình tròn vượt ra ngoài */
-        }
-        
-                /* Hình tròn mờ nền */
-        .background-circle {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-color: rgba(255, 255, 255, 0.3); /* Màu trắng mờ */
-            border-radius: 50%;
-            top: 50px; /* Cách đầu trang một chút */
-            left: -50px; /* Lệch về bên trái cạnh logo */
-            z-index: -1; /* Đặt dưới các yếu tố khác */
-        }
+<!DOCTYPE HTML>
+<!--
+    Spectral by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>TRA CỨU LƯƠNG</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* Tùy chỉnh header cố định và màu sắc */
+            #header {
+                background-color: #ffa600; /* Màu cam */
+                position: fixed; /* Cố định ở trên cùng */
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000; /* Đảm bảo header nằm trên các phần khác */
+                padding: 1rem 2rem; /* Điều chỉnh padding nếu cần */
+            }
+            #header h1 a {
+                color: #fff; /* Đổi màu chữ tiêu đề thành trắng */
+            }
+            #banner {
+                padding-top: 80px; /* Điều chỉnh để tránh bị header che khuất */
+            }
+            /* Ẩn các section không cần thiết tạm thời */
+            #one, #two, #three, #cta, #footer {
+                display: none; /* Xóa trắng các nội dung khác */
+            }
+        </style>
+    </head>
+    <body class="landing is-preload">
 
-        /* Đổi màu tiêu đề "Tra cứu lương" */
-        .title {
-            color: #B70E0E;
-            font-weight: 700; /* Bold */
-        }
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
 
-        /* Style cho nút Tra cứu */
-        .btn-custom {
-            background-color: #B70E0E;
-            border-color: #B70E0E;
-            color: white; /* Chữ trắng */
-            font-weight: 700; /* Bold */
-        }
-        .btn-custom:hover {
-            background-color: #6E0606; /* Màu khi hover */
-            border-color: #6E0606;
-            color: white; /* Chữ trắng */
-            font-weight: 700; /* Bold */
-        }
-        .btn-custom:active, .btn-custom:focus {
-            background-color: #6E0606; /* Giữ màu hover khi nhấn */
-            border-color: #6E0606;
-            color: white; /* Chữ trắng */
-            font-weight: 700; /* Bold */
-            opacity: 1; /* Loại bỏ hiệu ứng trong suốt */
-            box-shadow: none; /* Loại bỏ shadow mặc định khi nhấn */
-        }
+            <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">VIỆC LÀM KOS</a></h1>
+                <nav id="nav">
+                    <ul>
+                        <li class="special">
+                            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                            <div id="menu">
+                                <ul>
+                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="salary-lookup.html">Tra cứu lương</a></li>
+                                    <li><a href="#">Sign Up</a></li>
+                                    <li><a href="#">Log In</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
-        /* Tăng cách lề gấp đôi */
-        .container {
-            padding: 40px; /* Gấp đôi từ 20px mặc định của Bootstrap */
-            position: relative; /* Để tương thích với hình tròn nền */
-        }
+            <!-- Banner -->
+            <section id="banner">
+                <div class="inner">
+                    <h2>TRA CỨU LƯƠNG</h2>
+                    <p>Chào mừng đến với hệ thống tra cứu lương<br />
+                    Hãy khám phá các tính năng của chúng tôi!</p>
+                    <ul class="actions special">
+                        <li><a href="salary-lookup.html" class="button primary">Bắt đầu</a></li>
+                    </ul>
+                </div>
+                <a href="#one" class="more scrolly">Learn More</a>
+                <!-- Thay ảnh nền bằng placeholder -->
+                <img src="https://i.ibb.co/YgLhGcq/FB-1920-x-1280-px-3840-x-1920-px.png" alt="Banner Placeholder" style="width: 100%; height: auto; object-fit: cover;">
+            </section>
 
-        /* Style cho khung thông báo */
-        #result {
-            background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+            <!-- Các section khác tạm thời ẩn -->
+            <section id="one" class="wrapper style1 special">
+                <div class="inner">
+                    <!-- Nội dung sẽ được thêm sau -->
+                </div>
+            </section>
 
-        /* Đổi màu spinner */
-        .spinner-border {
-            color: #B70E0E;
-        }
+            <!-- Two -->
+            <section id="two" class="wrapper alt style2">
+                <!-- Nội dung sẽ được thêm sau -->
+            </section>
 
-        /* Đậm chữ cho các label */
-        .form-label {
-            font-weight: 700;
-        }
-        
-        /* Style cho chân trang */
-        .footer {
-            background-color: white;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 40px;
-        }
-        .footer h3 {
-            color: #B70E0E;
-            font-weight: 700;
-            font-size: 1.2em; /* Chữ to hơn nội dung thường */
-        }
-        .footer p {
-            font-weight: 700;
-            margin: 5px 0;
-        }
-        .footer i {
-            margin-right: 5px;
-        }
+            <!-- Three -->
+            <section id="three" class="wrapper style3 special">
+                <!-- Nội dung sẽ được thêm sau -->
+            </section>
 
-    </style>
-</head>
-<body>
-    <div class="background-circle"></div>
-    <div class="container mt-3">
-        <!-- Thêm logo trên tiêu đề -->
-        <div class="text-center mb-4">
-            <img src="https://i.ibb.co/tM1HqzNB/480804443-599731112878748-2453286799952090831-n.jpg" alt="Logo" style="max-width: 100px; border-radius: 40%;">
+            <!-- CTA -->
+            <section id="cta" class="wrapper style4">
+                <!-- Nội dung sẽ được thêm sau -->
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <!-- Nội dung sẽ được thêm sau -->
+            </footer>
+
         </div>
-        <h2 class="text-center title">TRA CỨU LƯƠNG</h2>
-        <p class="text-center">Chính xác - Nhanh chóng - Chuyên nghiệp</p>
-        <form id="searchForm">
-            <div class="mb-3">
-                <label for="fullName" class="form-label">Họ tên</label>
-                <input type="text" class="form-control" id="fullName" required>
-            </div>
-            <div class="mb-3">
-                <label for="employeeId" class="form-label">Mã nhân viên</label>
-                <input type="text" class="form-control" id="employeeId" required>
-            </div>
-            <div class="mb-3">
-                <label for="company" class="form-label">Công ty</label>
-                <input type="text" class="form-control" id="company" required>
-            </div>
-            <div class="mb-3">
-                <label for="month" class="form-label">Tháng tra cứu</label>
-                <input type="month" class="form-control" id="month" required>
-            </div>
-            <button type="submit" class="btn btn-custom w-100">Tra cứu</button>
-        </form>
-        <div id="result" class="mt-3"></div>
-    </div>
-    <!-- Thêm section chân trang -->
-    <footer class="footer">
-        <h3>VIỆC LÀM KOS</h3>
-        <p><i class="fas fa-globe"></i> Website: www.koutsourcing.vn</p>
-        <p><i class="fas fa-phone"></i> Hotline: 0397.013.122 (Ms. Nhung)</p>
-    </footer>
-<script>
-  let deferredPrompt;
 
-  // Đăng ký service worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(() => {
-      console.log('Service Worker registered');
-    }).catch((error) => {
-      console.log('Service Worker registration failed:', error);
-    });
-  }
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
 
-  // Xử lý sự kiện beforeinstallprompt
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); // Ngăn trình duyệt hiển thị prompt mặc định
-    deferredPrompt = e; // Lưu sự kiện để sử dụng sau
-    // Bạn có thể thêm logic để hiển thị nút tùy chỉnh hoặc kiểm tra điều kiện
-    // Ví dụ: deferredPrompt.prompt() để hiển thị prompt thủ công
-  });
-
-  // Xử lý sự kiện submit form
-  document.getElementById('searchForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Hiển thị thông báo "Đang xử lý..." với spinner
-    document.getElementById('result').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"></div> Đang xử lý...</div>';
-
-    // Thu thập dữ liệu từ form
-    const data = {
-      fullName: document.getElementById('fullName').value,
-      employeeId: document.getElementById('employeeId').value,
-      company: document.getElementById('company').value,
-      month: document.getElementById('month').value
-    };
-    const response = await fetch('https://n8n.koutsourcing.vn/webhook/6c7db24f-c707-402e-8af7-e06035d3c9e8', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    const result = await response.json();
-    document.getElementById('result').innerHTML = result.message; // Sử dụng innerHTML thay vì innerText
-  });
-</script>
-</body>
+    </body>
 </html>
