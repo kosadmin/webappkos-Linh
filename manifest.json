@@ -1,0 +1,20 @@
+{
+  "name": "Tra Cứu Lương",
+  "short_name": "Tra Lương",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBD72B",
+  "theme_color": "#FF8038",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/tM1HqzNB/480804443-599731112878748-2453286799952090831-n.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.ibb.co/tM1HqzNB/480804443-599731112878748-2453286799952090831-n.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
