@@ -140,28 +140,48 @@
         <p><i class="fas fa-globe"></i> Website: www.koutsourcing.vn</p>
         <p><i class="fas fa-phone"></i> Hotline: 0397.013.122 (Ms. Nhung)</p>
     </footer>
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Hiển thị thông báo "Đang xử lý..." với spinner
-            document.getElementById('result').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"></div> Đang xử lý...</div>';
+<script>
+  let deferredPrompt;
 
-            // Thu thập dữ liệu từ form
-            const data = {
-                fullName: document.getElementById('fullName').value,
-                employeeId: document.getElementById('employeeId').value,
-                company: document.getElementById('company').value,
-                month: document.getElementById('month').value
-            };
-            const response = await fetch('https://n8n.koutsourcing.vn/webhook/6c7db24f-c707-402e-8af7-e06035d3c9e8', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            const result = await response.json();
-            document.getElementById('result').innerHTML = result.message; // Sử dụng innerHTML thay vì innerText
-        });
-    </script>
+  // Đăng ký service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(() => {
+      console.log('Service Worker registered');
+    }).catch((error) => {
+      console.log('Service Worker registration failed:', error);
+    });
+  }
+
+  // Xử lý sự kiện beforeinstallprompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); // Ngăn trình duyệt hiển thị prompt mặc định
+    deferredPrompt = e; // Lưu sự kiện để sử dụng sau
+    // Bạn có thể thêm logic để hiển thị nút tùy chỉnh hoặc kiểm tra điều kiện
+    // Ví dụ: deferredPrompt.prompt() để hiển thị prompt thủ công
+  });
+
+  // Xử lý sự kiện submit form
+  document.getElementById('searchForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Hiển thị thông báo "Đang xử lý..." với spinner
+    document.getElementById('result').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"></div> Đang xử lý...</div>';
+
+    // Thu thập dữ liệu từ form
+    const data = {
+      fullName: document.getElementById('fullName').value,
+      employeeId: document.getElementById('employeeId').value,
+      company: document.getElementById('company').value,
+      month: document.getElementById('month').value
+    };
+    const response = await fetch('https://n8n.koutsourcing.vn/webhook/6c7db24f-c707-402e-8af7-e06035d3c9e8', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    document.getElementById('result').innerHTML = result.message; // Sử dụng innerHTML thay vì innerText
+  });
+</script>
 </body>
 </html>
