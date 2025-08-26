@@ -35,6 +35,9 @@
         /* Logo (chỉ fix độ cao, không giới hạn độ rộng) */
         .logo {
             max-height: 40px; /* Fix độ cao */
+            height: 40px; /* Đảm bảo độ cao cố định */
+            width: auto; /* Không giới hạn độ rộng */
+            object-fit: contain; /* Đảm bảo logo giữ tỷ lệ và không bị cắt */
         }
 
         /* Nút menu 3 gạch */
@@ -93,7 +96,7 @@
 
         /* Nội dung chính */
         .content {
-            padding: 120px 30px 30px; /* Padding-top để tránh bị header che */
+            padding: 120px 0 30px; /* Loại bỏ padding ngang để section tràn viền */
             text-align: center;
         }
 
@@ -103,13 +106,14 @@
             font-size: 1.25em; /* To hơn font thường (1em) một chút */
         }
 
-        /* Section mới với nền #FEF0CE (tràn viền, padding lề trái 30px) */
+        /* Section mới với nền #FEF0CE (tràn viền hoàn toàn) */
         .search-section {
             background-color: #FEF0CE;
-            padding: 40px 0; /* Loại bỏ padding lề trái/phải */
+            padding: 40px 0; /* Không padding ngang */
             margin: 20px 0;
             border-radius: 10px;
-            text-align: left; /* Căn lề trái */
+            text-align: left;
+            width: 100%; /* Đảm bảo tràn viền */
         }
 
         .search-section h2 {
@@ -120,44 +124,63 @@
 
         .search-section .btn-container {
             margin-left: 30px; /* Căn lề trái 30px cho nút */
+            display: flex; /* Xếp nút thành hàng ngang */
+            flex-wrap: wrap; /* Chuyển xuống dòng nếu cần trên mobile */
         }
 
-        /* Nút vuông với icon và chú thích */
+        /* Nút vuông với icon và chú thích bên ngoài */
         .search-section .btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 10px;
             margin: 0 10px 10px 0;
             padding: 10px;
-            text-align: center;
-            font-size: 0.9em;
+            background-color: #C75F00; /* Màu cam đậm */
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s; /* Hiệu ứng nổi */
+        }
+
+        .search-section .btn:hover {
+            transform: translateY(-5px); /* Nổi lên khi hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bóng đổ */
         }
 
         .search-section .btn i {
-            font-size: 1.5em;
-            margin-bottom: 5px;
+            font-size: 1.2em; /* Icon nhỏ hơn */
+        }
+
+        .btn-label {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #333;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .content {
-                padding: 70px 20px 20px;
+                padding: 70px 0 20px; /* Loại bỏ padding ngang */
             }
             .logo {
                 max-width: 35px;
                 height: 35px;
             }
             .search-section .btn {
-                width: 80px;
-                height: 80px;
-                font-size: 0.8em;
+                width: 60px;
+                height: 60px;
             }
             .search-section .btn i {
-                font-size: 1.2em;
+                font-size: 1em;
+            }
+            .search-section .btn-container {
+                flex-direction: column; /* Chuyển thành cột trên mobile */
+                align-items: flex-start;
+            }
+            .btn-label {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -197,20 +220,20 @@
             <div class="btn-container">
                 <a href="salary-lookup.html" class="btn btn-success">
                     <i class="fas fa-money-bill-wave"></i>
-                    <span>Lương</span>
                 </a>
+                <span class="btn-label">Lương</span>
                 <a href="#" class="btn btn-secondary">
                     <i class="fas fa-table"></i>
-                    <span>Bảng công</span>
                 </a>
+                <span class="btn-label">Bảng công</span>
                 <a href="#" class="btn btn-secondary">
                     <i class="fas fa-shield-alt"></i>
-                    <span>BHXH</span>
                 </a>
+                <span class="btn-label">BHXH</span>
                 <a href="#" class="btn btn-secondary">
                     <i class="fas fa-file-invoice"></i>
-                    <span>Thông tin nộp thuế</span>
                 </a>
+                <span class="btn-label">Thông tin nộp thuế</span>
             </div>
         </div>
     </div>
