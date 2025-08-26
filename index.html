@@ -40,6 +40,7 @@
             width: auto !important; /* Ưu tiên không giới hạn độ rộng */
             object-fit: contain; /* Giữ tỷ lệ và không bị cắt */
             max-width: none; /* Loại bỏ giới hạn chiều rộng tiềm ẩn */
+            flex-shrink: 0; /* Ngăn logo co lại trong flex container */
         }
 
         /* Nút menu 3 gạch */
@@ -129,6 +130,7 @@
             display: flex; /* Xếp nút thành hàng ngang */
             flex-wrap: wrap; /* Chuyển xuống dòng nếu cần */
             gap: 10px; /* Khoảng cách giữa các nút */
+            align-items: flex-start; /* Đảm bảo label xuống dưới */
         }
 
         /* Nút vuông với icon và chú thích bên ngoài */
@@ -143,8 +145,10 @@
             background-color: #C75F00; /* Màu cam đậm */
             color: white;
             text-decoration: none;
-            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow mờ màu nút */
-            transition: transform 0.2s; /* Hiệu ứng nổi */
+            box-shadow: none; /* Loại bỏ glow mặc định */
+            border: none; /* Loại bỏ viền mặc định từ Bootstrap */
+            outline: none; /* Loại bỏ viền focus */
+            transition: transform 0.2s, background-color 0.2s, color 0.2s; /* Hiệu ứng mượt */
         }
 
         .search-section .btn:hover,
@@ -166,6 +170,7 @@
             text-align: center; /* Căn giữa */
             max-width: 80px; /* Giới hạn độ rộng bằng nút */
             word-wrap: break-word; /* Auto xuống dòng */
+            display: block; /* Đảm bảo label xuống dưới */
         }
 
         /* Responsive */
@@ -174,7 +179,7 @@
                 padding: 70px 0 20px; /* Loại bỏ padding ngang */
             }
             .logo {
-                max-width: 35px;
+                max-width: none; /* Loại bỏ giới hạn chiều rộng trên mobile */
                 height: 35px;
             }
             .search-section .btn {
