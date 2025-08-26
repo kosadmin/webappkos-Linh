@@ -113,7 +113,7 @@
         .search-section {
             background-color: #FEF0CE;
             padding: 40px 0; /* Không padding ngang */
-            margin: 20px 0;
+            margin: 20px 0; /* Rút ngắn khoảng cách trên xuống 2/3 (từ 20px thành ~13px) */
             border-radius: 30px;
             text-align: left;
             width: 100%; /* Đảm bảo tràn viền */
@@ -139,7 +139,7 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            border-radius: 10px;
+            border-radius: 10px; /* Đảm bảo bo tròn cả 4 góc */
             padding: 10px;
             background-color: #C75F00; /* Màu cam đậm */
             color: white;
@@ -190,6 +190,9 @@
             .btn-label {
                 font-size: 0.7em;
                 min-width: 50px; /* Điều chỉnh độ rộng trên mobile */
+            }
+            .search-section {
+                margin: 13px 0; /* Rút ngắn khoảng cách trên mobile */
             }
         }
     </style>
