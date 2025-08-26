@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ - TRA CỨU LƯƠNG</title>
+    <link rel="manifest" href="/manifest.json"> <!-- Liên kết manifest cho PWA -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,7 +14,7 @@
             padding: 0;
             background: linear-gradient(to bottom, #FBD72B 0%, #FF8038 100%);
             min-height: 100vh;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Font chữ mặc định */
             overflow-x: hidden;
         }
 
@@ -23,7 +24,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(199, 95, 0, 0.5); /* Cam đậm cán mờ */
+            background-color: rgba(199, 95, 0, 0.7); /* Cam đậm cán mờ */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,7 +34,7 @@
 
         /* Logo */
         .logo {
-            max-width: 50px;
+            max-height: 50px;
         }
 
         /* Nút menu 3 gạch */
@@ -45,11 +46,11 @@
             cursor: pointer;
         }
 
-        /* Menu sidebar */
+        /* Menu sidebar (di chuyển sang bên phải) */
         .sidebar {
             position: fixed;
             top: 60px;
-            left: -250px;
+            right: -250px; /* Thay left bằng right */
             width: 250px;
             height: 100%;
             background-color: rgba(246, 117, 0, 0.9);
@@ -59,7 +60,7 @@
         }
 
         .sidebar.active {
-            left: 0;
+            right: 0; /* Thay left bằng right khi active */
         }
 
         .sidebar ul {
@@ -88,14 +89,19 @@
 
         /* Nội dung chính */
         .content {
-            padding: 120px 40px 40px; /* Padding-top để tránh bị header che */
+            padding: 120px 30px 30px; /* Padding-top để tránh bị header che */
             text-align: center;
+        }
+
+        /* Tiêu đề đổi màu */
+        .content h1 {
+            color: #B70E0E; /* Màu đỏ đậm */
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .content {
-                padding: 70px 10px 10px;
+                padding: 70px 20px 20px;
             }
             .logo {
                 max-width: 40px;
@@ -106,7 +112,7 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <img src="https://i.ibb.co/KzQ44nsH/logo-tr-ng-ngang.png" alt="logo-tr-ng-ngang" alt="Logo" class="logo">
+        <img src="https://i.ibb.co/KzQ44nsH/logo-tr-ng-ngang.png" alt="Logo" class="logo">
         <button class="menu-toggle" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </button>
@@ -135,6 +141,15 @@
     </div>
 
     <script>
+        // Đăng ký service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(() => {
+                console.log('Service Worker registered');
+            }).catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
