@@ -32,9 +32,11 @@
             z-index: 1000;
         }
 
-        /* Logo */
+        /* Logo (chỉ fix độ cao, không giới hạn độ rộng) */
         .logo {
-            max-height: 50px;
+            max-height: 40px; /* Fix độ cao */
+            height: 40px; /* Đảm bảo độ cao cố định */
+            width: auto; /* Không giới hạn độ rộng */
         }
 
         /* Nút menu 3 gạch */
@@ -46,21 +48,21 @@
             cursor: pointer;
         }
 
-        /* Menu sidebar (di chuyển sang bên phải) */
+        /* Menu sidebar (bên phải) */
         .sidebar {
             position: fixed;
             top: 60px;
-            right: -250px; /* Thay left bằng right */
+            right: -250px;
             width: 250px;
             height: 100%;
-            background-color: rgba(246, 117, 0, 0.9);
+            background-color: rgba(199, 95, 0, 0.9);
             padding: 20px;
             transition: 0.3s;
             z-index: 1000;
         }
 
         .sidebar.active {
-            right: 0; /* Thay left bằng right khi active */
+            right: 0;
         }
 
         .sidebar ul {
@@ -93,9 +95,29 @@
             text-align: center;
         }
 
-        /* Tiêu đề đổi màu */
+        /* Tiêu đề chính (cỡ chữ nhỏ hơn, to hơn font thường một chút) */
         .content h1 {
             color: #B70E0E; /* Màu đỏ đậm */
+            font-size: 1.5em; /* To hơn font thường (1em) một chút */
+        }
+
+        /* Section mới với nền #FEF0CE */
+        .search-section {
+            background-color: #FEF0CE;
+            padding: 40px 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .search-section h2 {
+            color: #B70E0E;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .search-section .btn {
+            margin: 0 10px 10px 0;
+            min-width: 120px;
         }
 
         /* Responsive */
@@ -104,7 +126,12 @@
                 padding: 70px 20px 20px;
             }
             .logo {
-                max-width: 40px;
+                max-width: 35px;
+                height: 35px;
+            }
+            .search-section .btn {
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -136,8 +163,19 @@
     <!-- Nội dung chính -->
     <div class="content">
         <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
-        <p>Hệ sinh thái toàn diện dành cho người lao động Việt Nam.</p>
+        <p>Hệ sinh thái vì người lao động Việt Nam.</p>
         <a href="salary-lookup.html" class="btn btn-primary mt-3">Bắt đầu tra cứu lương</a>
+
+        <!-- Section Tra cứu -->
+        <div class="search-section">
+            <h2>Tra cứu</h2>
+            <div>
+                <a href="salary-lookup.html" class="btn btn-success">Lương</a>
+                <a href="#" class="btn btn-secondary">Bảng công</a>
+                <a href="#" class="btn btn-secondary">BHXH</a>
+                <a href="#" class="btn btn-secondary">Thông tin nộp thuế</a>
+            </div>
+        </div>
     </div>
 
     <script>
