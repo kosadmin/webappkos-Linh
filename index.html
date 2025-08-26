@@ -1,116 +1,154 @@
-<!DOCTYPE HTML>
-<!--
-    Spectral by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>TRA CỨU LƯƠNG</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <style>
-            /* Tùy chỉnh header cố định và màu sắc */
-            #header {
-                background-color: #ffa600; /* Màu cam */
-                position: fixed; /* Cố định ở trên cùng */
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000; /* Đảm bảo header nằm trên các phần khác */
-                padding: 1rem 2rem; /* Điều chỉnh padding nếu cần */
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - TRA CỨU LƯƠNG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Gradient background */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #FBD72B 0%, #FF8038 100%);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Thanh header cố định */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 87, 34, 0.8); /* Cam đậm cán mờ */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            max-width: 50px;
+            border-radius: 50%;
+        }
+
+        /* Nút menu 3 gạch */
+        .menu-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Menu sidebar */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(255, 87, 34, 0.9);
+            padding: 20px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul li ul li a {
+            font-size: 16px;
+        }
+
+        /* Nội dung chính */
+        .content {
+            padding: 80px 20px 20px; /* Padding-top để tránh bị header che */
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 70px 10px 10px;
             }
-            #header h1 a {
-                color: #fff; /* Đổi màu chữ tiêu đề thành trắng */
+            .logo {
+                max-width: 40px;
             }
-            #banner {
-                padding-top: 80px; /* Điều chỉnh để tránh bị header che khuất */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://i.ibb.co/tM1HqzNB/480804443-599731112878748-2453286799952090831-n.jpg" alt="Logo" class="logo">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="#">Tra cứu</a>
+                <ul>
+                    <li><a href="salary-lookup.html">Lương</a></li>
+                    <li><a href="#">Bảng công</a></li>
+                    <li><a href="#">BHXH</a></li>
+                    <li><a href="#">Thông tin nộp thuế</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="content">
+        <h1>Chào mừng đến với TRA CỨU LƯƠNG</h1>
+        <p>Hệ thống hỗ trợ tra cứu thông tin lương và các dịch vụ liên quan.</p>
+        <a href="salary-lookup.html" class="btn btn-primary mt-3">Bắt đầu tra cứu lương</a>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Đóng sidebar khi nhấp ra ngoài
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
             }
-            /* Ẩn các section không cần thiết tạm thời */
-            #one, #two, #three, #cta, #footer {
-                display: none; /* Xóa trắng các nội dung khác */
-            }
-        </style>
-    </head>
-    <body class="landing is-preload">
-
-        <!-- Page Wrapper -->
-        <div id="page-wrapper">
-
-            <!-- Header -->
-            <header id="header" class="alt">
-                <h1><a href="index.html">VIỆC LÀM KOS</a></h1>
-                <nav id="nav">
-                    <ul>
-                        <li class="special">
-                            <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                            <div id="menu">
-                                <ul>
-                                    <li><a href="index.html">Trang chủ</a></li>
-                                    <li><a href="salary-lookup.html">Tra cứu lương</a></li>
-                                    <li><a href="#">Sign Up</a></li>
-                                    <li><a href="#">Log In</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-
-            <!-- Banner -->
-            <section id="banner">
-                <div class="inner">
-                    <h2>TRA CỨU LƯƠNG</h2>
-                    <p>Chào mừng đến với hệ thống tra cứu lương<br />
-                    Hãy khám phá các tính năng của chúng tôi!</p>
-                    <ul class="actions special">
-                        <li><a href="salary-lookup.html" class="button primary">Bắt đầu</a></li>
-                    </ul>
-                </div>
-                <a href="#one" class="more scrolly">Learn More</a>
-                <!-- Thay ảnh nền bằng placeholder -->
-                <img src="https://i.ibb.co/YgLhGcq/FB-1920-x-1280-px-3840-x-1920-px.png" alt="Banner Placeholder" style="width: 100%; height: auto; object-fit: cover;">
-            </section>
-
-            <!-- Các section khác tạm thời ẩn -->
-            <section id="one" class="wrapper style1 special">
-                <div class="inner">
-                    <!-- Nội dung sẽ được thêm sau -->
-                </div>
-            </section>
-
-            <!-- Two -->
-            <section id="two" class="wrapper alt style2">
-                <!-- Nội dung sẽ được thêm sau -->
-            </section>
-
-            <!-- Three -->
-            <section id="three" class="wrapper style3 special">
-                <!-- Nội dung sẽ được thêm sau -->
-            </section>
-
-            <!-- CTA -->
-            <section id="cta" class="wrapper style4">
-                <!-- Nội dung sẽ được thêm sau -->
-            </section>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <!-- Nội dung sẽ được thêm sau -->
-            </footer>
-
-        </div>
-
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-
-    </body>
+        });
+    </script>
+</body>
 </html>
