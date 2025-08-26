@@ -113,7 +113,7 @@
         .search-section {
             background-color: #FEF0CE;
             padding: 40px 0; /* Không padding ngang */
-            margin: 20px 0;
+            margin: 10px 0;
             border-radius: 30px;
             text-align: left;
             width: 100%; /* Đảm bảo tràn viền */
@@ -122,7 +122,7 @@
         .search-section h2 {
             color: #B70E0E;
             font-size: 1.25em; /* Bằng với h1 */
-            margin: 0 0 20px 30px; /* Padding trái 30px */
+            margin: 0 0 10px 30px; /* Padding trái 30px */
         }
 
         .search-section .btn-container {
@@ -233,22 +233,30 @@
         <div class="search-section">
             <h2>Tra cứu</h2>
             <div class="btn-container">
-                <a href="salary-lookup.html" class="btn btn-success">
-                    <i class="fas fa-money-bill-wave"></i>
-                </a>
-                <span class="btn-label">Lương</span>
-                <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-table"></i>
-                </a>
-                <span class="btn-label">Bảng công</span>
-                <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-shield-alt"></i>
-                </a>
-                <span class="btn-label">BHXH</span>
-                <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-file-invoice"></i>
-                </a>
-                <span class="btn-label">Thông tin nộp thuế</span>
+                <div class="btn-group">
+                    <a href="salary-lookup.html" class="btn btn-success">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </a>
+                    <span class="btn-label">Lương</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-table"></i>
+                    </a>
+                    <span class="btn-label">Bảng công</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-shield-alt"></i>
+                    </a>
+                    <span class="btn-label">BHXH</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-file-invoice"></i>
+                    </a>
+                    <span class="btn-label">Thông tin nộp thuế</span>
+                </div>
             </div>
         </div>
     </div>
@@ -271,8 +279,8 @@
         // Đóng sidebar khi nhấp ra ngoài
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
-            const menuToggle = document.querySelector('.menu-toggle');
-            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            const menu-toggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(event.target) && !menu-toggle.contains(event.target)) {
                 sidebar.classList.remove('active');
             }
         });
