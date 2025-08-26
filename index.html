@@ -28,14 +28,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 10px;
             z-index: 1000;
         }
 
         /* Logo (chỉ fix độ cao, không giới hạn độ rộng) */
         .logo {
-            max-height: 40px; /* Fix độ cao */
-            height: 40px; /* Đảm bảo độ cao cố định */
+            max-height: 80px; /* Fix độ cao */
+            height: 80px; /* Đảm bảo độ cao cố định */
             width: auto; /* Không giới hạn độ rộng */
             object-fit: contain; /* Đảm bảo logo giữ tỷ lệ và không bị cắt */
         }
@@ -125,7 +125,8 @@
         .search-section .btn-container {
             margin-left: 30px; /* Căn lề trái 30px cho nút */
             display: flex; /* Xếp nút thành hàng ngang */
-            flex-wrap: wrap; /* Chuyển xuống dòng nếu cần trên mobile */
+            flex-wrap: wrap; /* Chuyển xuống dòng nếu cần */
+            gap: 10px; /* Khoảng cách giữa các nút */
         }
 
         /* Nút vuông với icon và chú thích bên ngoài */
@@ -136,27 +137,29 @@
             width: 80px;
             height: 80px;
             border-radius: 10px;
-            margin: 0 10px 10px 0;
             padding: 10px;
             background-color: #C75F00; /* Màu cam đậm */
             color: white;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s; /* Hiệu ứng nổi */
+            transition: transform 0.2s; /* Hiệu ứng nổi */
         }
 
         .search-section .btn:hover {
             transform: translateY(-5px); /* Nổi lên khi hover */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bóng đổ */
+            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow mờ màu nút */
         }
 
         .search-section .btn i {
-            font-size: 1.2em; /* Icon nhỏ hơn */
+            font-size: 1.8em; /* Icon to gấp rưỡi (1.2em * 1.5) */
         }
 
         .btn-label {
             margin-top: 5px;
             font-size: 0.9em;
             color: #333;
+            text-align: center; /* Căn giữa */
+            max-width: 80px; /* Giới hạn độ rộng bằng nút */
+            word-wrap: break-word; /* Auto xuống dòng */
         }
 
         /* Responsive */
@@ -173,7 +176,7 @@
                 height: 60px;
             }
             .search-section .btn i {
-                font-size: 1em;
+                font-size: 1.35em; /* To gấp rưỡi 0.9em */
             }
             .search-section .btn-container {
                 flex-direction: column; /* Chuyển thành cột trên mobile */
@@ -181,6 +184,7 @@
             }
             .btn-label {
                 font-size: 0.8em;
+                max-width: 60px; /* Điều chỉnh độ rộng trên mobile */
             }
         }
     </style>
