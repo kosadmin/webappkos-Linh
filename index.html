@@ -125,6 +125,52 @@
             margin: 0 0 20px 30px; /* Padding trái 30px */
         }
 
+        /* Container cho nút và label */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Căn giữa nút và label */
+            margin-bottom: 20px; /* Khoảng cách giữa các nhóm */
+        }
+
+        /* Nút vuông */
+        .search-section .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background-color: #FEF0CE; /* Màu nền mặc định */
+            color: #C75F00; /* Màu icon mặc định */
+            text-decoration: none;
+            border: none;
+            outline: none;
+            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow #C75F00 */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .search-section .btn:hover,
+        .search-section .btn:active {
+            background-color: #C75F00; /* Chuyển màu khi hover/active */
+            color: #C75F00; /* Icon giữ nguyên màu #C75F00 */
+            transform: translateY(-5px); /* Nổi lên khi hover */
+            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow giữ nguyên */
+        }
+
+        .search-section .btn i {
+            font-size: 1.8em; /* Kích thước icon */
+        }
+
+        /* Label */
+        .btn-label {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #333;
+            text-align: center;
+            font-weight: bold; /* In đậm */
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .content {
@@ -133,6 +179,16 @@
             .logo {
                 max-width: none; /* Loại bỏ giới hạn chiều rộng trên mobile */
                 height: 35px;
+            }
+            .search-section .btn {
+                width: 60px;
+                height: 60px;
+            }
+            .search-section .btn i {
+                font-size: 1.35em; /* Điều chỉnh kích thước icon trên mobile */
+            }
+            .btn-label {
+                font-size: 0.7em; /* Điều chỉnh kích thước label trên mobile */
             }
         }
     </style>
@@ -169,6 +225,12 @@
         <!-- Section Tra cứu -->
         <div class="search-section">
             <h2>Tra cứu</h2>
+            <div class="btn-group">
+                <a href="salary-lookup.html" class="btn">
+                    <i class="fas fa-money-bill-wave"></i> <!-- Icon liên quan đến Lương -->
+                </a>
+                <span class="btn-label">Lương</span> <!-- Label in đậm, căn giữa -->
+            </div>
         </div>
     </div>
 
