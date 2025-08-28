@@ -133,14 +133,6 @@
             align-items: flex-start; /* Đảm bảo label xuống dưới */
         }
 
-        /* Nhóm nút và label */
-        .btn-group {
-            display: flex;
-            flex-direction: column; /* Đưa label xuống dưới */
-            align-items: center; /* Căn giữa nút và label */
-            position: relative; /* Đảm bảo bo góc không bị ảnh hưởng */
-        }
-
         /* Nút vuông với icon và chú thích bên ngoài */
         .search-section .btn {
             display: flex;
@@ -148,21 +140,20 @@
             justify-content: center;
             width: 80px;
             height: 80px;
-            border-radius: 10px; /* Đảm bảo bo góc */
+            border-radius: 10px;
             padding: 10px;
-            background-color: #FEF0CE; /* Màu nền mặc định */
+            background-color: #FEF0CE; /* Màu nút mặc định */
             color: #C75F00; /* Màu icon mặc định */
             text-decoration: none;
             box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow mặc định */
             border: none; /* Loại bỏ viền mặc định từ Bootstrap */
             outline: none; /* Loại bỏ viền focus */
-            transition: transform 0.2s, background-color 0.2s, color 0.2s; /* Hiệu ứng mượt */
-            z-index: 1; /* Đảm bảo nút nằm trên cùng */
+            transition: transform 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s; /* Hiệu ứng mượt */
         }
 
         .search-section .btn:hover,
         .search-section .btn:active {
-            background-color: #C75F00; /* Màu nền khi hover/active */
+            background-color: #C75F00; /* Màu nút khi hover/active */
             color: #FEF0CE; /* Màu icon khi hover/active */
             transform: translateY(-5px); /* Nổi lên khi hover */
             box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow khi hover/active */
@@ -174,14 +165,13 @@
 
         .btn-label {
             margin-top: 5px;
-            font-size: 1em; /* Cỡ chữ ngang chữ thường */
+            font-size: 1em; /* Cỡ chữ ngang với chữ thường */
             color: #B70E0E; /* Màu label */
             text-align: center; /* Căn giữa */
             max-width: 80px; /* Giới hạn độ rộng bằng nút */
             word-wrap: break-word; /* Auto xuống dòng */
             display: block; /* Đảm bảo label xuống dưới */
             font-weight: bold; /* In đậm label */
-            z-index: 0; /* Đảm bảo label nằm dưới nút nếu chồng lấn */
         }
 
         /* Responsive */
@@ -240,12 +230,10 @@
         <div class="search-section">
             <h2>Tra cứu</h2>
             <div class="btn-container">
-                <div class="btn-group">
-                    <a href="salary-lookup.html" class="btn">
-                        <i class="fas fa-money-bill-wave"></i> <!-- Icon liên quan đến lương -->
-                    </a>
-                    <span class="btn-label">Lương</span> <!-- Label in đậm -->
-                </div>
+                <a href="salary-lookup.html" class="btn">
+                    <i class="fas fa-money-bill-wave"></i> <!-- Icon liên quan đến lương -->
+                </a>
+                <span class="btn-label">Lương</span> <!-- Label in đậm -->
             </div>
         </div>
     </div>
