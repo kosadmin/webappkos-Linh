@@ -37,6 +37,7 @@
             max-height: 40px; /* Fix độ cao */
             height: 40px; /* Đảm bảo độ cao cố định */
             width: auto; /* Không giới hạn độ rộng */
+            object-fit: contain; /* Đảm bảo logo giữ tỷ lệ và không bị cắt */
         }
 
         /* Nút menu 3 gạch */
@@ -80,6 +81,10 @@
             font-size: 18px;
         }
 
+        .sidebar ul li > a { /* Làm đậm các mục mẹ (Trang chủ, Tra cứu) */
+            font-weight: bold;
+        }
+
         .sidebar ul li ul {
             padding-left: 20px;
             margin-top: 5px;
@@ -91,47 +96,91 @@
 
         /* Nội dung chính */
         .content {
-            padding: 120px 30px 30px; /* Padding-top để tránh bị header che */
+            padding: 120px 0 30px; /* Loại bỏ padding ngang để section tràn viền */
             text-align: center;
         }
 
         /* Tiêu đề chính (cỡ chữ nhỏ hơn, to hơn font thường một chút) */
         .content h1 {
             color: #B70E0E; /* Màu đỏ đậm */
-            font-size: 1.5em; /* To hơn font thường (1em) một chút */
+            font-size: 1.25em; /* To hơn font thường (1em) một chút */
         }
 
-        /* Section mới với nền #FEF0CE */
+        /* Section mới với nền #FEF0CE (tràn viền hoàn toàn) */
         .search-section {
             background-color: #FEF0CE;
-            padding: 40px 20px;
+            padding: 40px 0; /* Không padding ngang */
             margin: 20px 0;
             border-radius: 10px;
+            text-align: left;
+            width: 100%; /* Đảm bảo tràn viền */
         }
 
         .search-section h2 {
             color: #B70E0E;
-            font-size: 1.8em;
-            margin-bottom: 20px;
+            font-size: 1.25em; /* Bằng với h1 */
+            margin: 0 0 20px 30px; /* Padding trái 30px */
         }
 
+        .search-section .btn-container {
+            margin-left: 30px; /* Căn lề trái 30px cho nút */
+            display: flex; /* Xếp nút thành hàng ngang */
+            flex-wrap: wrap; /* Chuyển xuống dòng nếu cần trên mobile */
+        }
+
+        /* Nút vuông với icon và chú thích bên ngoài */
         .search-section .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
             margin: 0 10px 10px 0;
-            min-width: 120px;
+            padding: 10px;
+            background-color: #C75F00; /* Màu cam đậm */
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s; /* Hiệu ứng nổi */
+        }
+
+        .search-section .btn:hover {
+            transform: translateY(-5px); /* Nổi lên khi hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bóng đổ */
+        }
+
+        .search-section .btn i {
+            font-size: 1.2em; /* Icon nhỏ hơn */
+        }
+
+        .btn-label {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #333;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .content {
-                padding: 70px 20px 20px;
+                padding: 70px 0 20px; /* Loại bỏ padding ngang */
             }
             .logo {
                 max-width: 35px;
                 height: 35px;
             }
             .search-section .btn {
-                width: 100%;
-                margin-bottom: 10px;
+                width: 60px;
+                height: 60px;
+            }
+            .search-section .btn i {
+                font-size: 1em;
+            }
+            .search-section .btn-container {
+                flex-direction: column; /* Chuyển thành cột trên mobile */
+                align-items: flex-start;
+            }
+            .btn-label {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -164,16 +213,27 @@
     <div class="content">
         <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
         <p>Hệ sinh thái vì người lao động Việt Nam.</p>
-        <a href="salary-lookup.html" class="btn btn-primary mt-3">Bắt đầu tra cứu lương</a>
 
         <!-- Section Tra cứu -->
         <div class="search-section">
             <h2>Tra cứu</h2>
-            <div>
-                <a href="salary-lookup.html" class="btn btn-success">Lương</a>
-                <a href="#" class="btn btn-secondary">Bảng công</a>
-                <a href="#" class="btn btn-secondary">BHXH</a>
-                <a href="#" class="btn btn-secondary">Thông tin nộp thuế</a>
+            <div class="btn-container">
+                <a href="salary-lookup.html" class="btn btn-success">
+                    <i class="fas fa-money-bill-wave"></i>
+                </a>
+                <span class="btn-label">Lương</span>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-table"></i>
+                </a>
+                <span class="btn-label">Bảng công</span>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-shield-alt"></i>
+                </a>
+                <span class="btn-label">BHXH</span>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-file-invoice"></i>
+                </a>
+                <span class="btn-label">Thông tin nộp thuế</span>
             </div>
         </div>
     </div>
