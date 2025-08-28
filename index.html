@@ -138,6 +138,7 @@
             display: flex;
             flex-direction: column; /* Đưa label xuống dưới */
             align-items: center; /* Căn giữa nút và label */
+            position: relative; /* Đảm bảo không ảnh hưởng đến border-radius */
         }
 
         /* Nút vuông với icon và chú thích bên ngoài */
@@ -147,7 +148,7 @@
             justify-content: center;
             width: 80px;
             height: 80px;
-            border-radius: 10px;
+            border-radius: 10px; /* Đảm bảo góc bo tròn */
             padding: 10px;
             background-color: #FEF0CE; /* Màu nền mặc định */
             color: #C75F00; /* Màu icon mặc định */
@@ -156,6 +157,7 @@
             border: none; /* Loại bỏ viền mặc định từ Bootstrap */
             outline: none; /* Loại bỏ viền focus */
             transition: transform 0.2s, background-color 0.2s, color 0.2s; /* Hiệu ứng mượt */
+            z-index: 1; /* Đảm bảo nút nằm trên cùng */
         }
 
         .search-section .btn:hover,
@@ -179,6 +181,7 @@
             word-wrap: break-word; /* Auto xuống dòng */
             display: block; /* Đảm bảo label xuống dưới */
             font-weight: bold; /* In đậm label */
+            position: relative; /* Đảm bảo không ảnh hưởng đến border-radius */
         }
 
         /* Responsive */
