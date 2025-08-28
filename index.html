@@ -140,21 +140,20 @@
             justify-content: center;
             width: 80px;
             height: 80px;
-            border-radius: 10px; /* Đảm bảo bo tròn đồng đều */
+            border-radius: 10px;
             background-color: #FEF0CE; /* Màu nền mặc định */
             color: #C75F00; /* Màu icon mặc định */
             text-decoration: none;
             border: none;
             outline: none;
             box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow #C75F00 */
-            transition: transform 0.2s, background-color 0.2s, color 0.2s;
-            overflow: hidden; /* Đảm bảo bo góc áp dụng đúng */
+            transition: transform 0.2s, background-color 0.2s;
         }
 
         .search-section .btn:hover,
         .search-section .btn:active {
             background-color: #C75F00; /* Chuyển màu khi hover/active */
-            color: #FEF0CE; /* Icon đổi màu #FEF0CE */
+            color: #FEF0CE; /* Icon giữ đổi màu #FEF0CE */
             transform: translateY(-5px); /* Nổi lên khi hover */
             box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow giữ nguyên */
         }
@@ -182,8 +181,8 @@
                 height: 35px;
             }
             .search-section .btn {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
             .search-section .btn i {
                 font-size: 1.35em; /* Điều chỉnh kích thước icon trên mobile */
@@ -240,4 +239,24 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').then(() => {
                 console.log('Service Worker registered');
-            }).catch((error)
+            }).catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Đóng sidebar khi nhấp ra ngoài
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
