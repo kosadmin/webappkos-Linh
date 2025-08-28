@@ -28,19 +28,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 10px;
+            padding: 10px 20px;
             z-index: 1000;
-            min-height: 60px; /* Đảm bảo header đủ cao cho logo */
         }
 
         /* Logo (chỉ fix độ cao, không giới hạn độ rộng) */
         .logo {
             max-height: 40px; /* Fix độ cao */
             height: 40px; /* Đảm bảo độ cao cố định */
-            width: auto !important; /* Ưu tiên không giới hạn độ rộng */
-            object-fit: contain; /* Giữ tỷ lệ và không bị cắt */
-            max-width: none; /* Loại bỏ giới hạn chiều rộng tiềm ẩn */
-            flex-shrink: 0; /* Ngăn logo co lại trong flex container */
+            width: auto; /* Không giới hạn độ rộng */
         }
 
         /* Nút menu 3 gạch */
@@ -60,7 +56,7 @@
             width: 250px;
             height: 100%;
             background-color: rgba(199, 95, 0, 0.9);
-            padding: 50px;
+            padding: 20px;
             transition: 0.3s;
             z-index: 1000;
         }
@@ -84,10 +80,6 @@
             font-size: 18px;
         }
 
-        .sidebar ul li > a { /* Làm đậm các mục mẹ (Trang chủ, Tra cứu) */
-            font-weight: bold;
-        }
-
         .sidebar ul li ul {
             padding-left: 20px;
             margin-top: 5px;
@@ -99,98 +91,47 @@
 
         /* Nội dung chính */
         .content {
-            padding: 150px 0 30px; /* Loại bỏ padding ngang để section tràn viền */
+            padding: 120px 30px 30px; /* Padding-top để tránh bị header che */
             text-align: center;
         }
 
         /* Tiêu đề chính (cỡ chữ nhỏ hơn, to hơn font thường một chút) */
         .content h1 {
             color: #B70E0E; /* Màu đỏ đậm */
-            font-size: 1.25em; /* To hơn font thường (1em) một chút */
+            font-size: 1.5em; /* To hơn font thường (1em) một chút */
         }
 
-        /* Section mới với nền #FEF0CE (tràn viền hoàn toàn) */
+        /* Section mới với nền #FEF0CE */
         .search-section {
             background-color: #FEF0CE;
-            padding: 40px 0; /* Không padding ngang */
+            padding: 40px 20px;
             margin: 20px 0;
-            border-radius: 30px;
-            text-align: left;
-            width: 100%; /* Đảm bảo tràn viền */
+            border-radius: 10px;
         }
 
         .search-section h2 {
             color: #B70E0E;
-            font-size: 1.25em; /* Bằng với h1 */
-            margin: 0 0 20px 30px; /* Padding trái 30px */
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
 
-        /* Container cho nút và label */
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Căn giữa nút và label */
-            margin-bottom: 20px; /* Khoảng cách giữa các nhóm */
-        }
-
-        /* Nút vuông */
         .search-section .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            border-radius: 10px; /* Đảm bảo bo tròn cả 4 góc */
-            background-color: #FEF0CE; /* Màu nền mặc định */
-            color: #C75F00; /* Màu icon mặc định */
-            text-decoration: none;
-            border: none; /* Loại bỏ viền */
-            outline: none; /* Loại bỏ viền focus */
-            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow #C75F00 */
-            transition: transform 0.2s, background-color 0.2s;
-            /* Đảm bảo không bị ảnh hưởng bởi các thuộc tính khác */
-            overflow: hidden; /* Ngăn cắt góc */
-        }
-
-        .search-section .btn:hover,
-        .search-section .btn:active {
-            background-color: #C75F00; /* Chuyển màu khi hover/active */
-            color: #FEF0CE; /* Icon giữ đổi màu #FEF0CE */
-            transform: translateY(-5px); /* Nổi lên khi hover */
-            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow giữ nguyên */
-        }
-
-        .search-section .btn i {
-            font-size: 1.8em; /* Kích thước icon */
-        }
-
-        /* Label */
-        .btn-label {
-            margin-top: 5px;
-            font-size: 1em;
-            color: #333;
-            text-align: center;
-            font-weight: bold; /* In đậm */
+            margin: 0 10px 10px 0;
+            min-width: 120px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .content {
-                padding: 70px 0 20px; /* Loại bỏ padding ngang */
+                padding: 70px 20px 20px;
             }
             .logo {
-                max-width: none; /* Loại bỏ giới hạn chiều rộng trên mobile */
+                max-width: 35px;
                 height: 35px;
             }
             .search-section .btn {
-                width: 80px;
-                height: 80px;
-            }
-            .search-section .btn i {
-                font-size: 1.35em; /* Điều chỉnh kích thước icon trên mobile */
-            }
-            .btn-label {
-                font-size: 0.7em; /* Điều chỉnh kích thước label trên mobile */
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -223,15 +164,16 @@
     <div class="content">
         <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
         <p>Hệ sinh thái vì người lao động Việt Nam.</p>
+        <a href="salary-lookup.html" class="btn btn-primary mt-3">Bắt đầu tra cứu lương</a>
 
         <!-- Section Tra cứu -->
         <div class="search-section">
             <h2>Tra cứu</h2>
-            <div class="btn-group">
-                <a href="salary-lookup.html" class="btn">
-                    <i class="fas fa-money-bill-wave"></i> <!-- Icon liên quan đến Lương -->
-                </a>
-                <span class="btn-label">Lương</span> <!-- Label in đậm, căn giữa -->
+            <div>
+                <a href="salary-lookup.html" class="btn btn-success">Lương</a>
+                <a href="#" class="btn btn-secondary">Bảng công</a>
+                <a href="#" class="btn btn-secondary">BHXH</a>
+                <a href="#" class="btn btn-secondary">Thông tin nộp thuế</a>
             </div>
         </div>
     </div>
