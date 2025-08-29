@@ -290,17 +290,10 @@
             }
         }
 
-        /* Phần Tin tuyển dụng HOT */
+        /* Phần Tin tuyển dụng HOT trong cùng section */
         .hot-jobs-section {
-            background-color: #FFFFFF;
             padding: 40px 0;
-            margin: 20px 0 0;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            text-align: left;
-            width: 100%;
+            margin: 40px 0 0; /* Khoảng cách từ các nút Tra cứu */
         }
 
         .hot-jobs-section h2 {
@@ -312,9 +305,8 @@
 
         .job-banner-container {
             margin-left: 30px;
-            overflow-x: auto;
+            overflow-x: hidden; /* Ẩn thanh cuộn ngang */
             white-space: nowrap;
-            -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên mobile */
         }
 
         .job-banner {
@@ -360,7 +352,7 @@
         <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
         <p>Hệ sinh thái vì người lao động Việt Nam.</p>
 
-        <!-- Section Tra cứu -->
+        <!-- Section Tra cứu và Tin tuyển dụng HOT -->
         <div class="search-section">
             <h2>Tra cứu</h2>
             <div class="btn-container">
@@ -389,17 +381,17 @@
                     <span class="btn-label">Thông tin nộp thuế</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Section Tin tuyển dụng HOT -->
-        <div class="hot-jobs-section">
-            <h2>Tin tuyển dụng HOT</h2>
-            <div class="job-banner-container" id="jobBannerContainer">
-                <div class="job-banner">Banner 1</div>
-                <div class="job-banner">Banner 2</div>
-                <div class="job-banner">Banner 3</div>
-                <div class="job-banner">Banner 4</div>
-                <div class="job-banner">Banner 5</div>
+            <!-- Tin tuyển dụng HOT trong cùng section -->
+            <div class="hot-jobs-section">
+                <h2>Tin tuyển dụng HOT</h2>
+                <div class="job-banner-container" id="jobBannerContainer">
+                    <div class="job-banner">Banner 1</div>
+                    <div class="job-banner">Banner 2</div>
+                    <div class="job-banner">Banner 3</div>
+                    <div class="job-banner">Banner 4</div>
+                    <div class="job-banner">Banner 5</div>
+                </div>
             </div>
         </div>
     </div>
@@ -474,29 +466,29 @@
             }
         }
 
-        // Tự động cuộn banner sau 3 giây
+        // Tự động cuộn banner với hiệu ứng đứng yên 3 giây rồi gạt nhanh
         let scrollPosition = 0;
         const bannerContainer = document.getElementById('jobBannerContainer');
         const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right (300px + 20px)
+        let isPaused = true;
 
         function autoScrollBanners() {
-            scrollPosition -= 1; // Tốc độ cuộn
-            if (scrollPosition <= -bannerWidth) {
-                scrollPosition += bannerWidth;
+            if (!isPaused) {
+                scrollPosition = -bannerWidth; // Gạt nhanh sang banner tiếp theo
+                bannerContainer.style.transform = `translateX(${scrollPosition}px)`;
                 bannerContainer.appendChild(bannerContainer.firstElementChild); // Di chuyển banner đầu về cuối
+                isPaused = true; // Đặt lại trạng thái dừng
+                setTimeout(() => {
+                    isPaused = false; // Tiếp tục sau 3 giây
+                }, 3000);
             }
-            bannerContainer.style.transform = `translateX(${scrollPosition}px)`;
         }
 
-        setInterval(autoScrollBanners, 30); // Cập nhật mỗi 30ms để tạo hiệu ứng mượt
+        // Bắt đầu chu kỳ
+        setInterval(autoScrollBanners, 100); // Kiểm tra mỗi 100ms
         setTimeout(() => {
-            scrollPosition = 0; // Đặt lại vị trí sau 3 giây
-            bannerContainer.style.transition = 'transform 1s ease-in-out'; // Hiệu ứng trơn tru
-            bannerContainer.style.transform = `translateX(0)`;
-            setTimeout(() => {
-                bannerContainer.style.transition = ''; // Tắt hiệu ứng sau khi hoàn tất
-            }, 1000);
-        }, 3000); // Chờ 3 giây trước khi cuộn
+            isPaused = false; // Bắt đầu cuộn sau 3 giây đầu tiên
+        }, 3000);
     </script>
 </body>
 </html>
