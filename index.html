@@ -307,21 +307,29 @@
             margin-left: 30px;
             overflow-x: hidden; /* Ẩn thanh cuộn ngang */
             white-space: nowrap;
+            position: relative; /* Để xử lý cuộn */
         }
 
         .job-banner {
             display: inline-block;
             width: 300px;
             height: 150px;
-            background-color: #F0F0F0; /* Màu nền tạm thời */
-            margin-right: 20px;
-            border-radius: 10px;
-            text-align: center;
-            line-height: 150px;
-            color: #333;
-            font-size: 1em;
             background-size: cover; /* Đảm bảo hình ảnh phủ kín */
             background-position: center; /* Căn giữa hình ảnh */
+            margin-right: 20px;
+            border-radius: 10px;
+            vertical-align: top; /* Căn chỉnh trên cùng */
+        }
+
+        /* Đảm bảo tải hình ảnh trên mobile */
+        @media (max-width: 768px) {
+            .job-banner {
+                width: 200px; /* Giảm kích thước trên mobile */
+                height: 100px; /* Giảm kích thước trên mobile */
+            }
+            .job-banner-container {
+                margin-left: 15px; /* Giảm margin trên mobile */
+            }
         }
     </style>
 </head>
@@ -432,21 +440,16 @@
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Ngăn chặn trình duyệt tự động hiển thị popup
             e.preventDefault();
             deferredPrompt = e;
-            // Hiển thị nút nếu chưa được thêm
             document.querySelector('.add-to-home-btn').style.display = 'flex';
         });
 
-        // Kiểm tra nếu đang chạy trong ứng dụng đã cài đặt
         if (window.matchMedia('(display-mode: standalone)').matches) {
-            // Ẩn nút khi chạy trong app đã cài đặt
             document.querySelector('.add-to-home-btn').style.display = 'none';
         }
 
         window.addEventListener('appinstalled', () => {
-            // Ẩn nút trong trình duyệt sau khi cài đặt (không ảnh hưởng đến app)
             if (!window.matchMedia('(display-mode: standalone)').matches) {
                 document.querySelector('.add-to-home-btn').style.display = 'none';
             }
@@ -486,7 +489,6 @@
             }
         }
 
-        // Bắt đầu chu kỳ
         setInterval(autoScrollBanners, 100); // Kiểm tra mỗi 100ms
         setTimeout(() => {
             isPaused = false; // Bắt đầu cuộn sau 3 giây đầu tiên
