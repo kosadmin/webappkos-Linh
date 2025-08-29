@@ -126,24 +126,24 @@
         }
 
         .search-section .btn-container {
-            margin: 20px; /* Căn lề trái 30px cho nút */
+            margin-left: 20px; /* Căn lề trái 30px cho nút */
             display: flex; /* Xếp nút thành hàng ngang */
             flex-wrap: wrap; /* Chuyển xuống dòng nếu cần */
-            gap: 32px; /* Khoảng cách giữa các nút */
+            gap: 30px; /* Khoảng cách giữa các nút */
             align-items: flex-start; /* Đảm bảo label xuống dưới */
         }
 
-        /* Nút tròn với icon và chú thích bên ngoài */
+        /* Nút với icon và chú thích bên ngoài */
         .search-section .btn {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60px;
             height: 60px;
-            border-radius: 50%; /* Tạo hình tròn (50% của chiều rộng/chiều cao) */
+            border-radius: 0; /* (Nếu muốn tạo hình tròn thì điền 50% của chiều rộng/chiều cao) */
             padding: 10px;
             background-color: #FEF0CE; /* Màu nút mặc định */
-            color: #C75F00; /* Màu icon mặc định */
+            color: #FF8038; /* Màu icon mặc định */
             text-decoration: none;
             box-shadow: 0 0 15px rgba(255, 185, 121, 0.6); /* Glow mặc định */
             border: none; /* Loại bỏ viền mặc định từ Bootstrap */
@@ -153,7 +153,7 @@
 
         .search-section .btn:hover,
         .search-section .btn:active {
-            background-color: #C75F00; /* Màu nút khi hover/active */
+            background-color: #FF8038; /* Màu nút khi hover/active */
             color: #FEF0CE; /* Màu icon khi hover/active */
             transform: translateY(-5px); /* Nổi lên khi hover */
             box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow khi hover/active */
