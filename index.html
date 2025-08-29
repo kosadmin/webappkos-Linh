@@ -105,9 +105,8 @@
 
         /* Nội dung chính */
         .content {
-            padding: 170px 0 0; /* Loại bỏ padding-bottom để section tự điều chỉnh */
+            padding: 170px 0 0; /* Loại bỏ padding-bottom */
             text-align: center;
-            min-height: calc(100vh - 60px); /* Đảm bảo content chiếm hết chiều cao còn lại */
         }
 
         /* Tiêu đề chính (cỡ chữ nhỏ hơn, to hơn font thường một chút) */
@@ -127,7 +126,6 @@
             border-bottom-right-radius: 0; /* Không bo góc dưới bên phải */
             text-align: left;
             width: 100%; /* Đảm bảo tràn viền */
-            min-height: calc(100% - 60px); /* Kéo dài section đến hết content, trừ padding-top (40px) và margin-top (20px) */
         }
 
         .search-section h2 {
@@ -195,7 +193,7 @@
         .add-to-home-btn {
             position: fixed;
             left: 20px;
-            top: 50%;
+            top: 66.67%; /* Cách trên cùng 2/3, cách dưới 1/3 (100% - 66.67% = 33.33%) */
             transform: translateY(-50%);
             width: 50px;
             height: 50px;
@@ -220,15 +218,44 @@
             font-size: 1.5em;
         }
 
+        /* Bóng thoại (tooltip) cho nút Add to Home Screen */
+        .add-to-home-tooltip {
+            position: absolute;
+            top: 50%;
+            left: 60px; /* Đặt bên phải nút */
+            transform: translateY(-50%);
+            background-color: #333;
+            color: #FFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em; /* Cỡ chữ nhỏ */
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .add-to-home-btn:hover .add-to-home-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Responsive cho nút Add to Home Screen */
         @media (max-width: 768px) {
             .add-to-home-btn {
                 left: 10px;
                 width: 40px;
                 height: 40px;
+                top: 66.67%; /* Giữ tỷ lệ 2/3 - 1/3 */
             }
             .add-to-home-btn i {
                 font-size: 1.2em;
+            }
+            .add-to-home-tooltip {
+                left: 50px; /* Điều chỉnh vị trí tooltip trên mobile */
+                font-size: 0.7em; /* Cỡ chữ nhỏ hơn trên mobile */
+                padding: 4px 8px;
             }
         }
 
@@ -317,9 +344,10 @@
         </div>
     </div>
 
-    <!-- Nút Add to Home Screen -->
+    <!-- Nút Add to Home Screen với tooltip -->
     <button class="add-to-home-btn" onclick="addToHomeScreen()">
         <i class="fas fa-plus"></i>
+        <span class="add-to-home-tooltip">Thêm vào màn hình chính</span>
     </button>
 
     <script>
@@ -353,6 +381,13 @@
             // Ngăn chặn trình duyệt tự động hiển thị popup
             e.preventDefault();
             deferredPrompt = e;
+            // Hiển thị nút nếu chưa được thêm
+            document.querySelector('.add-to-home-btn').style.display = 'flex';
+        });
+
+        window.addEventListener('appinstalled', () => {
+            // Ẩn nút khi ứng dụng đã được thêm vào màn hình chính
+            document.querySelector('.add-to-home-btn').style.display = 'none';
         });
 
         function addToHomeScreen() {
