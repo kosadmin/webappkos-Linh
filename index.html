@@ -12,7 +12,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #FBD72B 0%, #FF8038 100%);
+            background: linear-gradient(to bottom, #FBD72B 0%, #FD6600 100%);
             min-height: 100vh;
             font-family: 'Roboto', sans-serif; /* Font chữ mặc định */
             overflow-x: hidden;
@@ -24,7 +24,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 128, 56, 0.7); /* Cam đậm cán mờ */
+            background-color: rgba(253, 102, 0, 0.7); /* Cam đậm cán mờ */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,7 +59,7 @@
             right: -250px;
             width: 250px;
             height: 100%;
-            background-color: rgba(255, 128, 56, 0.9);
+            background-color: rgba(253, 102, 0, 0.9);
             padding: 50px;
             transition: 0.3s;
             z-index: 1000;
@@ -109,9 +109,9 @@
             font-size: 1.25em; /* To hơn font thường (1em) một chút */
         }
 
-        /* Section mới với nền #FEF0CE (tràn viền hoàn toàn) */
+        /* Section mới với nền #FFFFFF (tràn viền hoàn toàn) */
         .search-section {
-            background-color: #FEF0CE;
+            background-color: #FFFFFF;
             padding: 40px 0; /* Không padding ngang */
             margin: 20px 0;
             border-radius: 30px;
@@ -126,10 +126,10 @@
         }
 
         .search-section .btn-container {
-            margin-left: 20px; /* Căn lề trái 30px cho nút */
+            margin-left: 30px; /* Căn lề trái 30px cho nút */
             display: flex; /* Xếp nút thành hàng ngang */
             flex-wrap: wrap; /* Chuyển xuống dòng nếu cần */
-            gap: 30px; /* Khoảng cách giữa các nút */
+            gap: 25px; /* Khoảng cách giữa các nút */
             align-items: flex-start; /* Đảm bảo label xuống dưới */
         }
 
@@ -138,14 +138,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 0; /* (Nếu muốn tạo hình tròn thì điền 50% của chiều rộng/chiều cao) */
             padding: 10px;
-            background-color: #FEF0CE; /* Màu nút mặc định */
-            color: #FF8038; /* Màu icon mặc định */
+            background-color: #FFFFFF; /* Màu nút mặc định */
+            color: #FD6600; /* Màu icon mặc định */
             text-decoration: none;
-            box-shadow: 0 0 15px rgba(255, 185, 121, 0.6); /* Glow mặc định */
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6); /* Glow mặc định */
             border: none; /* Loại bỏ viền mặc định từ Bootstrap */
             outline: none; /* Loại bỏ viền focus */
             transition: transform 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s; /* Hiệu ứng mượt */
@@ -153,10 +153,10 @@
 
         .search-section .btn:hover,
         .search-section .btn:active {
-            background-color: #FF8038; /* Màu nút khi hover/active */
-            color: #FEF0CE; /* Màu icon khi hover/active */
+            background-color: #FD6600; /* Màu nút khi hover/active */
+            color: #FFFFFF; /* Màu icon khi hover/active */
             transform: translateY(-5px); /* Nổi lên khi hover */
-            box-shadow: 0 0 15px rgba(255, 185, 121, 0.6); /* Glow khi hover/active */
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6); /* Glow khi hover/active */
         }
 
         .search-section .btn i {
@@ -190,8 +190,8 @@
                 height: 35px;
             }
             .search-section .btn {
-                width: 60px;
-                height: 60px;
+                width: 55px;
+                height: 55px;
                 border-radius: 0; /* Muốn tạo hình tròn thì để 50%*/
             }
             .search-section .btn i {
