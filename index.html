@@ -105,7 +105,7 @@
 
         /* Nội dung chính */
         .content {
-            padding: 170px 0 30px; /* Tăng padding-top thêm 20px để dịch xuống */
+            padding: 170px 0 0; /* Loại bỏ padding-bottom để section tự điều chỉnh */
             text-align: center;
             min-height: calc(100vh - 60px); /* Đảm bảo content chiếm hết chiều cao còn lại */
         }
@@ -120,14 +120,14 @@
         .search-section {
             background-color: #FFFFFF;
             padding: 40px 0; /* Không padding ngang */
-            margin: 20px 0 0; /* Loại bỏ margin-bottom để không tạo khoảng trống */
+            margin: 20px 0 0; /* Loại bỏ margin-bottom */
             border-top-left-radius: 30px; /* Bo góc chỉ ở trên bên trái */
             border-top-right-radius: 30px; /* Bo góc chỉ ở trên bên phải */
             border-bottom-left-radius: 0; /* Không bo góc dưới bên trái */
             border-bottom-right-radius: 0; /* Không bo góc dưới bên phải */
             text-align: left;
             width: 100%; /* Đảm bảo tràn viền */
-            min-height: calc(100% - 40px); /* Kéo dài section đến hết content, trừ padding */
+            min-height: calc(100% - 60px); /* Kéo dài section đến hết content, trừ padding-top (40px) và margin-top (20px) */
         }
 
         .search-section h2 {
@@ -191,10 +191,51 @@
             align-items: center; /* Căn giữa nút và label */
         }
 
+        /* Nút Add to Home Screen cố định bên trái */
+        .add-to-home-btn {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: #FD6600;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-home-btn:hover {
+            background-color: #FF4500; /* Màu đậm hơn khi hover */
+        }
+
+        .add-to-home-btn i {
+            font-size: 1.5em;
+        }
+
+        /* Responsive cho nút Add to Home Screen */
+        @media (max-width: 768px) {
+            .add-to-home-btn {
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            .add-to-home-btn i {
+                font-size: 1.2em;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .content {
-                padding: 90px 0 20px; /* Tăng padding-top thêm 20px trên mobile */
+                padding: 90px 0 0; /* Tăng padding-top thêm 20px trên mobile */
             }
             .logo {
                 max-width: none; /* Loại bỏ giới hạn chiều rộng trên mobile */
@@ -276,6 +317,11 @@
         </div>
     </div>
 
+    <!-- Nút Add to Home Screen -->
+    <button class="add-to-home-btn" onclick="addToHomeScreen()">
+        <i class="fas fa-plus"></i>
+    </button>
+
     <script>
         // Đăng ký service worker
         if ('serviceWorker' in navigator) {
@@ -299,6 +345,31 @@
                 sidebar.classList.remove('active');
             }
         });
+
+        // Hàm Add to Home Screen
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Ngăn chặn trình duyệt tự động hiển thị popup
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        function addToHomeScreen() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
+            }
+        }
     </script>
 </body>
 </html>
