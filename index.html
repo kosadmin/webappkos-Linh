@@ -122,7 +122,7 @@
         .search-section h2 {
             color: #B70E0E;
             font-size: 1.25em; /* Bằng với h1 */
-            margin: 0 0 20px 30px; /* Padding trái 30px */
+            margin: 0 0 20px 20px; /* Padding trái 30px cho nút */
         }
 
         .search-section .btn-container {
@@ -133,19 +133,19 @@
             align-items: flex-start; /* Đảm bảo label xuống dưới */
         }
 
-        /* Nút vuông với icon và chú thích bên ngoài */
+        /* Nút tròn với icon và chú thích bên ngoài */
         .search-section .btn {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60px;
             height: 60px;
-            border-radius: 20; /* Bỏ yếu tố bo góc */
+            border-radius: 50%; /* Tạo hình tròn (50% của chiều rộng/chiều cao) */
             padding: 10px;
             background-color: #FEF0CE; /* Màu nút mặc định */
             color: #C75F00; /* Màu icon mặc định */
             text-decoration: none;
-            box-shadow: 0 0 15px rgba(199, 95, 0, 0.6); /* Glow mặc định */
+            box-shadow: 0 0 15px rgba(255, 185, 121, 0.6); /* Glow mặc định */
             border: none; /* Loại bỏ viền mặc định từ Bootstrap */
             outline: none; /* Loại bỏ viền focus */
             transition: transform 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s; /* Hiệu ứng mượt */
@@ -164,7 +164,7 @@
         }
 
         .btn-label {
-            margin-top: 5px;
+            margin-top: 7px;
             font-size: 1em; /* Cỡ chữ ngang với chữ thường */
             color: #B70E0E; /* Màu label */
             text-align: center; /* Căn giữa */
@@ -190,8 +190,9 @@
                 height: 35px;
             }
             .search-section .btn {
-                width: 70px;
-                height: 70px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%; /* Tạo hình tròn trên mobile */
             }
             .search-section .btn i {
                 font-size: 1.35em; /* To gấp rưỡi 0.9em */
