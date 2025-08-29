@@ -113,6 +113,7 @@
         .content h1 {
             color: #B70E0E; /* Đổi màu về #B70E0E */
             font-size: 1.25em; /* To hơn font thường (1em) một chút */
+            font-weight: bold; /* In đậm */
         }
 
         /* Section mới với nền #FFFFFF (tràn viền hoàn toàn) */
@@ -132,6 +133,7 @@
             color: #B70E0E; /* Đổi màu về #B70E0E */
             font-size: 1.25em; /* Bằng với h1 */
             margin: 0 0 20px 30px; /* Padding trái 30px cho nút */
+            font-weight: bold; /* In đậm */
         }
 
         .search-section .btn-container {
@@ -207,11 +209,12 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             z-index: 1000;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .add-to-home-btn:hover {
             background-color: #FF4500; /* Màu đậm hơn khi hover */
+            transform: translateY(-55px); /* Nổi lên khi hover */
         }
 
         .add-to-home-btn i {
@@ -224,21 +227,20 @@
             top: 50%;
             left: 60px; /* Đặt bên phải nút */
             transform: translateY(-50%);
-            background-color: #333;
-            color: #FFF;
+            background-color: #FFFFFF;
+            color: #333;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 0.8em; /* Cỡ chữ nhỏ */
             white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s;
-            pointer-events: none;
+            opacity: 1; /* Luôn hiển thị */
+            visibility: visible; /* Luôn hiển thị */
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6); /* Hiệu ứng nổi */
+            transition: transform 0.2s;
         }
 
         .add-to-home-btn:hover .add-to-home-tooltip {
-            opacity: 1;
-            visibility: visible;
+            transform: translateY(-55px); /* Nổi lên cùng nút khi hover */
         }
 
         /* Responsive cho nút Add to Home Screen */
@@ -256,6 +258,12 @@
                 left: 50px; /* Điều chỉnh vị trí tooltip trên mobile */
                 font-size: 0.7em; /* Cỡ chữ nhỏ hơn trên mobile */
                 padding: 4px 8px;
+            }
+            .add-to-home-btn:hover {
+                transform: translateY(-45px); /* Điều chỉnh hiệu ứng nổi trên mobile */
+            }
+            .add-to-home-btn:hover .add-to-home-tooltip {
+                transform: translateY(-45px); /* Điều chỉnh hiệu ứng nổi trên mobile */
             }
         }
 
@@ -280,6 +288,46 @@
                 font-size: 0.9em; /* Điều chỉnh cỡ chữ trên mobile */
                 max-width: 70px; /* Điều chỉnh độ rộng trên mobile */
             }
+        }
+
+        /* Phần Tin tuyển dụng HOT */
+        .hot-jobs-section {
+            background-color: #FFFFFF;
+            padding: 40px 0;
+            margin: 20px 0 0;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .hot-jobs-section h2 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            margin: 0 0 20px 30px;
+            font-weight: bold; /* In đậm */
+        }
+
+        .job-banner-container {
+            margin-left: 30px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên mobile */
+        }
+
+        .job-banner {
+            display: inline-block;
+            width: 300px;
+            height: 150px;
+            background-color: #F0F0F0; /* Màu nền tạm thời */
+            margin-right: 20px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 150px;
+            color: #333;
+            font-size: 1em;
         }
     </style>
 </head>
@@ -342,6 +390,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- Section Tin tuyển dụng HOT -->
+        <div class="hot-jobs-section">
+            <h2>Tin tuyển dụng HOT</h2>
+            <div class="job-banner-container" id="jobBannerContainer">
+                <div class="job-banner">Banner 1</div>
+                <div class="job-banner">Banner 2</div>
+                <div class="job-banner">Banner 3</div>
+                <div class="job-banner">Banner 4</div>
+                <div class="job-banner">Banner 5</div>
+            </div>
+        </div>
     </div>
 
     <!-- Nút Add to Home Screen với tooltip -->
@@ -385,9 +445,17 @@
             document.querySelector('.add-to-home-btn').style.display = 'flex';
         });
 
-        window.addEventListener('appinstalled', () => {
-            // Ẩn nút khi ứng dụng đã được thêm vào màn hình chính
+        // Kiểm tra nếu đang chạy trong ứng dụng đã cài đặt
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            // Ẩn nút khi chạy trong app đã cài đặt
             document.querySelector('.add-to-home-btn').style.display = 'none';
+        }
+
+        window.addEventListener('appinstalled', () => {
+            // Ẩn nút trong trình duyệt sau khi cài đặt (không ảnh hưởng đến app)
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.querySelector('.add-to-home-btn').style.display = 'none';
+            }
         });
 
         function addToHomeScreen() {
@@ -405,6 +473,30 @@
                 alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
             }
         }
+
+        // Tự động cuộn banner sau 3 giây
+        let scrollPosition = 0;
+        const bannerContainer = document.getElementById('jobBannerContainer');
+        const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right (300px + 20px)
+
+        function autoScrollBanners() {
+            scrollPosition -= 1; // Tốc độ cuộn
+            if (scrollPosition <= -bannerWidth) {
+                scrollPosition += bannerWidth;
+                bannerContainer.appendChild(bannerContainer.firstElementChild); // Di chuyển banner đầu về cuối
+            }
+            bannerContainer.style.transform = `translateX(${scrollPosition}px)`;
+        }
+
+        setInterval(autoScrollBanners, 30); // Cập nhật mỗi 30ms để tạo hiệu ứng mượt
+        setTimeout(() => {
+            scrollPosition = 0; // Đặt lại vị trí sau 3 giây
+            bannerContainer.style.transition = 'transform 1s ease-in-out'; // Hiệu ứng trơn tru
+            bannerContainer.style.transform = `translateX(0)`;
+            setTimeout(() => {
+                bannerContainer.style.transition = ''; // Tắt hiệu ứng sau khi hoàn tất
+            }, 1000);
+        }, 3000); // Chờ 3 giây trước khi cuộn
     </script>
 </body>
 </html>
