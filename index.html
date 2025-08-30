@@ -304,9 +304,10 @@
 
         .job-banner-container {
             margin-left: 30px;
-            overflow-x: auto; /* Khôi phục thanh cuộn */
+            overflow-x: auto; /* Giữ thanh cuộn */
             white-space: nowrap;
             -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên mobile */
+            position: relative;
         }
 
         .job-banner {
@@ -322,8 +323,8 @@
 
         @media (max-width: 768px) {
             .job-banner {
-                width: 200px; /* Giảm kích thước trên mobile */
-                height: 100px; /* Giảm kích thước trên mobile */
+                width: 200px;
+                height: 100px;
             }
             .job-banner-container {
                 margin-left: 15px;
@@ -466,36 +467,56 @@
             }
         }
 
-        // Tự động chuyển banner mỗi 3 giây, giữ thanh cuộn
-        let currentIndex = 0;
+        // Tự động cuộn banner với vòng lặp và banner 1 ở giữa
         const bannerContainer = document.getElementById('jobBannerContainer');
         const banners = bannerContainer.children;
         const totalBanners = banners.length;
         const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right
+        let currentIndex = 0;
 
-        function autoScrollBanners() {
-            currentIndex = (currentIndex + 1) % totalBanners;
-            bannerContainer.style.transition = 'transform 0.3s ease-in-out'; // Hiệu ứng mượt khi chuyển
-            bannerContainer.style.transform = `translateX(-${currentIndex * bannerWidth}px)`;
-            // Sau khi chuyển, reset transition để không ảnh hưởng cuộn thủ công
-            setTimeout(() => {
-                bannerContainer.style.transition = '';
-            }, 300);
+        // Đặt banner 1 ở giữa ban đầu
+        function centerFirstBanner() {
+            const containerWidth = bannerContainer.offsetWidth;
+            const firstBannerOffset = (containerWidth - bannerWidth) / 2;
+            bannerContainer.scrollLeft = firstBannerOffset;
         }
 
-        // Chuyển banner mỗi 3 giây
-        setInterval(autoScrollBanners, 3000);
+        // Chuyển banner tự động mỗi 3 giây
+        function autoScrollBanners() {
+            currentIndex = (currentIndex + 1) % totalBanners;
+            const scrollPosition = currentIndex * bannerWidth;
+            bannerContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth' // Cuộn mượt
+            });
 
-        // Cho phép cuộn thủ công
+            // Nếu đến cuối, quay về đầu
+            if (currentIndex === totalBanners - 1) {
+                setTimeout(() => {
+                    bannerContainer.scrollLeft = 0; // Quay về đầu
+                    currentIndex = 0;
+                }, 300); // Chờ hiệu ứng mượt hoàn tất
+            }
+        }
+
+        // Khởi động
+        centerFirstBanner();
+        const autoScrollInterval = setInterval(autoScrollBanners, 3000);
+
+        // Dừng tự động khi cuộn thủ công
         bannerContainer.addEventListener('scroll', () => {
-            // Dừng tự động khi người dùng cuộn
             clearInterval(autoScrollInterval);
-            // Tính toán lại currentIndex dựa trên vị trí cuộn
             const scrollLeft = bannerContainer.scrollLeft;
             currentIndex = Math.round(scrollLeft / bannerWidth);
         });
 
-        let autoScrollInterval = setInterval(autoScrollBanners, 3000);
+        // Tự động khởi động lại sau khi cuộn thủ công dừng
+        let scrollTimeout;
+        bannerContainer.addEventListener('scrollend', () => {
+            scrollTimeout = setTimeout(() => {
+                autoScrollInterval = setInterval(autoScrollBanners, 3000);
+            }, 2000); // Khởi động lại sau 2 giây không cuộn
+        });
     </script>
 </body>
 </html>
