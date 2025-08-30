@@ -1,522 +1,528 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Trang chủ - TRA CỨU LƯƠNG</title>
- <link rel="manifest" href="/manifest.json"> <!-- Liên kết manifest cho PWA -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- <style>
- /* Gradient background */
- @font-face {
- font-family: 'Lato';
- src: url('/fonts/Lato Regular.ttf') format('truetype');
- }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - TRA CỨU LƯƠNG</title>
+    <link rel="manifest" href="/manifest.json"> <!-- Liên kết manifest cho PWA -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Gradient background */
+        @font-face {
+            font-family: 'Lato';
+            src: url('/fonts/Lato Regular.ttf') format('truetype');
+        }
 
- body {
- margin: 0;
- padding: 0;
- background: linear-gradient(to bottom, #FBD72B 0%, #FD6600 100%);
- min-height: 100vh;
- font-family: 'Lato', sans-serif;
- overflow-x: hidden;
- color: #17173D;
- }
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #FBD72B 0%, #FD6600 100%);
+            min-height: 100vh;
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            color: #17173D;
+        }
 
- /* Thanh header cố định */
- .header {
- position: fixed;
- top: 0;
- left: 0;
- width: 100%;
- background-color: rgba(253, 102, 0, 0.7);
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 10px;
- z-index: 1000;
- min-height: 60px;
- }
+        /* Thanh header cố định */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(253, 102, 0, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000;
+            min-height: 60px;
+        }
 
- /* Logo */
- .logo {
- max-height: 40px;
- height: 40px;
- width: auto !important;
- object-fit: contain;
- max-width: none;
- flex-shrink: 0;
- }
+        /* Logo */
+        .logo {
+            max-height: 40px;
+            height: 40px;
+            width: auto !important;
+            object-fit: contain;
+            max-width: none;
+            flex-shrink: 0;
+        }
 
- /* Nút menu 3 gạch */
- .menu-toggle {
- font-size: 24px;
- background: none;
- border: none;
- color: white;
- cursor: pointer;
- }
+        /* Nút menu 3 gạch */
+        .menu-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
 
- /* Menu sidebar */
- .sidebar {
- position: fixed;
- top: 60px;
- right: -250px;
- width: 250px;
- height: 100%;
- background-color: rgba(253, 102, 0, 0.9);
- padding: 50px;
- transition: 0.3s;
- z-index: 1000;
- }
+        /* Menu sidebar */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(253, 102, 0, 0.9);
+            padding: 50px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
 
- .sidebar.active {
- right: 0;
- }
+        .sidebar.active {
+            right: 0;
+        }
 
- .sidebar ul {
- list-style: none;
- padding: 0;
- }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
- .sidebar ul li {
- margin: 15px 0;
- }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
 
- .sidebar ul li a {
- color: white;
- text-decoration: none;
- font-size: 18px;
- }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
 
- .sidebar ul li > a {
- font-weight: bold;
- }
+        .sidebar ul li > a {
+            font-weight: bold;
+        }
 
- .sidebar ul li ul {
- padding-left: 20px;
- margin-top: 5px;
- }
+        .sidebar ul li ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
 
- .sidebar ul li ul li a {
- font-size: 16px;
- }
+        .sidebar ul li ul li a {
+            font-size: 16px;
+        }
 
- /* Nội dung chính */
- .content {
- padding: 170px 0 0;
- text-align: center;
- }
+        /* Nội dung chính */
+        .content {
+            padding: 170px 0 0;
+            text-align: center;
+        }
 
- /* Tiêu đề chính */
- .content h1 {
- color: #B70E0E;
- font-size: 1.25em;
- font-weight: bold;
- }
+        /* Tiêu đề chính */
+        .content h1 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            font-weight: bold;
+        }
 
- /* Section với nền #FFFFFF */
- .search-section {
- background-color: #FFFFFF;
- padding: 40px 0;
- margin: 20px 0 0;
- border-top-left-radius: 30px;
- border-top-right-radius: 30px;
- border-bottom-left-radius: 0;
- border-bottom-right-radius: 0;
- text-align: left;
- width: 100%;
- }
+        /* Section với nền #FFFFFF */
+        .search-section {
+            background-color: #FFFFFF;
+            padding: 40px 0;
+            margin: 20px 0 0;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            text-align: left;
+            width: 100%;
+        }
 
- .search-section h2 {
- color: #B70E0E;
- font-size: 1.25em;
- margin: 0 0 20px 30px;
- font-weight: bold;
- }
+        .search-section h2 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            margin: 0 0 20px 30px;
+            font-weight: bold;
+        }
 
- .search-section .btn-container {
- margin-left: 30px;
- display: flex;
- flex-wrap: wrap;
- gap: 25px;
- align-items: flex-start;
- }
+        .search-section .btn-container {
+            margin-left: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: flex-start;
+        }
 
- .search-section .btn {
- display: flex;
- align-items: center;
- justify-content: center;
- width: 55px;
- height: 55px;
- border-radius: 0;
- padding: 10px;
- background-color: #FFFFFF;
- color: #FD6600;
- text-decoration: none;
- box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
- border: none;
- outline: none;
- transition: transform 0.2s, background-color 0.2s, color 0.2s;
- }
+        .search-section .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 0;
+            padding: 10px;
+            background-color: #FFFFFF;
+            color: #FD6600;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+            border: none;
+            outline: none;
+            transition: transform 0.2s, background-color 0.2s, color 0.2s;
+        }
 
- .search-section .btn:hover,
- .search-section .btn:active {
- background-color: #FD6600;
- color: #FFFFFF;
- transform: translateY(-5px);
- box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
- }
+        .search-section .btn:hover,
+        .search-section .btn:active {
+            background-color: #FD6600;
+            color: #FFFFFF;
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+        }
 
- .search-section .btn i {
- font-size: 1.8em;
- }
+        .search-section .btn i {
+            font-size: 1.8em;
+        }
 
- .btn-label {
- margin-top: 7px;
- font-size: 1em;
- color: #495154;
- text-align: center;
- max-width: 70px;
- word-wrap: break-word;
- display: block;
- font-weight: bold;
- }
+        .btn-label {
+            margin-top: 7px;
+            font-size: 1em;
+            color: #495154;
+            text-align: center;
+            max-width: 70px;
+            word-wrap: break-word;
+            display: block;
+            font-weight: bold;
+        }
 
- .btn-group {
- display: flex;
- flex-direction: column;
- align-items: center;
- }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
- /* Nút Add to Home Screen */
- .add-to-home-btn {
- position: fixed;
- left: 20px;
- top: 66.67%;
- transform: translateY(-50%);
- width: 50px;
- height: 50px;
- background-color: #FD6600;
- color: #FFFFFF;
- border: none;
- border-radius: 50%;
- display: flex;
- align-items: center;
- justify-content: center;
- box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
- cursor: pointer;
- z-index: 1000;
- transition: background-color 0.3s, transform 0.2s;
- }
+        /* Nút Add to Home Screen */
+        .add-to-home-btn {
+            position: fixed;
+            left: 20px;
+            top: 66.67%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: #FD6600;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
- .add-to-home-btn:hover {
- background-color: #FF4500;
- transform: translateY(-55px);
- }
+        .add-to-home-btn:hover {
+            background-color: #FF4500;
+            transform: translateY(-55px);
+        }
 
- .add-to-home-btn i {
- font-size: 1.5em;
- }
+        .add-to-home-btn i {
+            font-size: 1.5em;
+        }
 
- /* Bóng thoại (tooltip) */
- .add-to-home-tooltip {
- position: absolute;
- top: 50%;
- left: 60px;
- transform: translateY(-50%);
- background-color: #FFFFFF;
- color: #333;
- padding: 5px 10px;
- border-radius: 5px;
- font-size: 0.8em;
- white-space: nowrap;
- opacity: 1;
- visibility: visible;
- box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
- transition: transform 0.2s;
- }
+        /* Bóng thoại (tooltip) */
+        .add-to-home-tooltip {
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            transform: translateY(-50%);
+            background-color: #FFFFFF;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+            transition: transform 0.2s;
+        }
 
- .add-to-home-btn:hover .add-to-home-tooltip {
- transform: translateY(-55px);
- }
+        .add-to-home-btn:hover .add-to-home-tooltip {
+            transform: translateY(-55px);
+        }
 
- /* Responsive cho nút Add to Home Screen */
- @media (max-width: 768px) {
- .add-to-home-btn {
- left: 10px;
- width: 40px;
- height: 40px;
- top: 66.67%;
- }
- .add-to-home-btn i {
- font-size: 1.2em;
- }
- .add-to-home-tooltip {
- left: 50px;
- font-size: 0.7em;
- padding: 4px 8px;
- }
- .add-to-home-btn:hover {
- transform: translateY(-45px);
- }
- .add-to-home-btn:hover .add-to-home-tooltip {
- transform: translateY(-45px);
- }
- }
+        /* Responsive cho nút Add to Home Screen */
+        @media (max-width: 768px) {
+            .add-to-home-btn {
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                top: 66.67%;
+            }
+            .add-to-home-btn i {
+                font-size: 1.2em;
+            }
+            .add-to-home-tooltip {
+                left: 50px;
+                font-size: 0.7em;
+                padding: 4px 8px;
+            }
+            .add-to-home-btn:hover {
+                transform: translateY(-45px);
+            }
+            .add-to-home-btn:hover .add-to-home-tooltip {
+                transform: translateY(-45px);
+            }
+        }
 
- /* Responsive */
- @media (max-width: 768px) {
- .content {
- padding: 90px 0 0;
- }
- .logo {
- max-width: none;
- height: 35px;
- }
- .search-section .btn {
- width: 55px;
- height: 55px;
- border-radius: 0;
- }
- .search-section .btn i {
- font-size: 1.35em;
- }
- .btn-label {
- font-size: 0.9em;
- max-width: 70px;
- }
- }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 90px 0 0;
+            }
+            .logo {
+                max-width: none;
+                height: 35px;
+            }
+            .search-section .btn {
+                width: 55px;
+                height: 55px;
+                border-radius: 0;
+            }
+            .search-section .btn i {
+                font-size: 1.35em;
+            }
+            .btn-label {
+                font-size: 0.9em;
+                max-width: 70px;
+            }
+        }
 
- /* Phần Tin tuyển dụng HOT */
- .hot-jobs-section {
- padding: 20px 0;
- margin: 20px 0 0;
- }
+        /* Phần Tin tuyển dụng HOT */
+        .hot-jobs-section {
+            padding: 20px 0;
+            margin: 20px 0 0;
+        }
 
- .hot-jobs-section h2 {
- color: #B70E0E;
- font-size: 1.25em;
- margin: 0 0 20px 30px;
- font-weight: bold;
- }
+        .hot-jobs-section h2 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            margin: 0 0 20px 30px;
+            font-weight: bold;
+        }
 
- .job-banner-container {
- margin-left: 30px;
- overflow-x: auto; /* Giữ thanh cuộn */
- white-space: nowrap;
- -webkit-overflow-scrolling: touch;
- position: relative;
- padding-bottom: 20px; /* Để thanh cuộn không che banner */
- }
+        .job-banner-container {
+            margin-left: 30px;
+            overflow-x: auto; /* Giữ thanh cuộn */
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            padding-bottom: 20px; /* Để thanh cuộn không che banner */
+        }
 
- .job-banner {
- display: inline-block;
- width: 300px;
- height: 150px;
- background-size: cover;
- background-position: center;
- margin-right: 20px;
- border-radius: 10px;
- vertical-align: top;
- }
+        .job-banner {
+            display: inline-block;
+            width: 300px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 20px;
+            border-radius: 10px;
+            vertical-align: top;
+        }
 
- @media (max-width: 768px) {
- .job-banner {
- width: 200px;
- height: 100px;
- }
- .job-banner-container {
- margin-left: 15px;
- }
- }
- </style>
+        @media (max-width: 768px) {
+            .job-banner {
+                width: 200px;
+                height: 100px;
+            }
+            .job-banner-container {
+                margin-left: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
- <!-- Header -->
- <div class="header">
- <img src="https://i.ibb.co/KzQ44nsH/logo-tr-ng-ngang.png" alt="Logo" class="logo">
- <button class="menu-toggle" onclick="toggleSidebar()">
- <i class="fas fa-bars"></i>
- </button>
- </div>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://i.ibb.co/KzQ44nsH/logo-tr-ng-ngang.png" alt="Logo" class="logo">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 
- <!-- Sidebar Menu -->
- <div class="sidebar" id="sidebar">
- <ul>
- <li><a href="index.html">Trang chủ</a></li>
- <li><a href="#">Tra cứu</a>
- <ul>
- <li><a href="salary-lookup.html">Lương</a></li>
- <li><a href="#">Bảng công</a></li>
- <li><a href="#">BHXH</a></li>
- <li><a href="#">Thông tin nộp thuế</a></li>
- </ul>
- </li>
- </ul>
- </div>
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="#">Tra cứu</a>
+                <ul>
+                    <li><a href="salary-lookup.html">Lương</a></li>
+                    <li><a href="#">Bảng công</a></li>
+                    <li><a href="#">BHXH</a></li>
+                    <li><a href="#">Thông tin nộp thuế</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
- <!-- Nội dung chính -->
- <div class="content">
- <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
- <p>Hệ sinh thái vì người lao động Việt Nam.</p>
+    <!-- Nội dung chính -->
+    <div class="content">
+        <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
+        <p>Hệ sinh thái vì người lao động Việt Nam.</p>
 
- <!-- Section Tra cứu và Tin tuyển dụng HOT -->
- <div class="search-section">
- <h2>Tra cứu</h2>
- <div class="btn-container">
- <div class="btn-group">
- <a href="salary-lookup.html" class="btn">
- <i class="fas fa-coins"></i>
- </a>
- <span class="btn-label">Lương</span>
- </div>
- <div class="btn-group">
- <a href="#" class="btn">
- <i class="fas fa-table"></i>
- </a>
- <span class="btn-label">Bảng công</span>
- </div>
- <div class="btn-group">
- <a href="#" class="btn">
- <i class="fas fa-shield-alt"></i>
- </a>
- <span class="btn-label">BHXH</span>
- </div>
- <div class="btn-group">
- <a href="#" class="btn">
- <i class="fas fa-file-invoice"></i>
- </a>
- <span class="btn-label">Thông tin nộp thuế</span>
- </div>
- </div>
+        <!-- Section Tra cứu và Tin tuyển dụng HOT -->
+        <div class="search-section">
+            <h2>Tra cứu</h2>
+            <div class="btn-container">
+                <div class="btn-group">
+                    <a href="salary-lookup.html" class="btn">
+                        <i class="fas fa-coins"></i>
+                    </a>
+                    <span class="btn-label">Lương</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn">
+                        <i class="fas fa-table"></i>
+                    </a>
+                    <span class="btn-label">Bảng công</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn">
+                        <i class="fas fa-shield-alt"></i>
+                    </a>
+                    <span class="btn-label">BHXH</span>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn">
+                        <i class="fas fa-file-invoice"></i>
+                    </a>
+                    <span class="btn-label">Thông tin nộp thuế</span>
+                </div>
+            </div>
 
- <!-- Tin tuyển dụng HOT -->
- <div class="hot-jobs-section">
- <h2>Tin tuyển dụng HOT</h2>
- <div class="job-banner-container" id="jobBannerContainer">
- <!-- Thêm banner ẩn ở đầu để tạo vòng lặp -->
- <div class="job-banner" style="background-image: url('https://i.ibb.co/bgmg8V97/5.png');" aria-hidden="true"></div>
- <div class="job-banner" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');"></div>
- <div class="job-banner" style="background-image: url('https://i.ibb.co/zWGXFNqb/2.png');"></div>
- <div class="job-banner" style="background-image: url('https://i.ibb.co/BVB2PCSN/3.png');"></div>
- <div class="job-banner" style="background-image: url('https://i.ibb.co/mF1KxrYC/4.png');"></div>
- <div class="job-banner" style="background-image: url('https://i.ibb.co/bgmg8V97/5.png');"></div>
- <!-- Thêm banner ẩn ở cuối để tạo vòng lặp -->
- <div class="job-banner" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');" aria-hidden="true"></div>
- </div>
- </div>
- </div>
- </div>
+            <!-- Tin tuyển dụng HOT -->
+            <div class="hot-jobs-section">
+                <h2>Tin tuyển dụng HOT</h2>
+                <div class="job-banner-container" id="jobBannerContainer">
+                    <!-- Thêm bản sao ở đầu và cuối để tạo vòng lặp -->
+                    <div class="job-banner clone" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');" aria-hidden="true"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/zWGXFNqb/2.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/BVB2PCSN/3.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/mF1KxrYC/4.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/bgmg8V97/5.png');"></div>
+                    <div class="job-banner clone" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
- <!-- Nút Add to Home Screen với tooltip -->
- <button class="add-to-home-btn" onclick="addToHomeScreen()">
- <i class="fas fa-plus"></i>
- <span class="add-to-home-tooltip">Thêm vào màn hình chính</span>
- </button>
+    <!-- Nút Add to Home Screen với tooltip -->
+    <button class="add-to-home-btn" onclick="addToHomeScreen()">
+        <i class="fas fa-plus"></i>
+        <span class="add-to-home-tooltip">Thêm vào màn hình chính</span>
+    </button>
 
- <script>
- // Đăng ký service worker
- if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('/sw.js').then(() => {
- console.log('Service Worker registered');
- }).catch((error) => {
- console.log('Service Worker registration failed:', error);
- });
- }
+    <script>
+        // Đăng ký service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(() => {
+                console.log('Service Worker registered');
+            }).catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
 
- function toggleSidebar() {
- const sidebar = document.getElementById('sidebar');
- sidebar.classList.toggle('active');
- }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
 
- document.addEventListener('click', function(event) {
- const sidebar = document.getElementById('sidebar');
- const menuToggle = document.querySelector('.menu-toggle');
- if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
- sidebar.classList.remove('active');
- }
- });
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
 
- let deferredPrompt;
- window.addEventListener('beforeinstallprompt', (e) => {
- e.preventDefault();
- deferredPrompt = e;
- document.querySelector('.add-to-home-btn').style.display = 'flex';
- });
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.querySelector('.add-to-home-btn').style.display = 'flex';
+        });
 
- if (window.matchMedia('(display-mode: standalone)').matches) {
- document.querySelector('.add-to-home-btn').style.display = 'none';
- }
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            document.querySelector('.add-to-home-btn').style.display = 'none';
+        }
 
- window.addEventListener('appinstalled', () => {
- if (!window.matchMedia('(display-mode: standalone)').matches) {
- document.querySelector('.add-to-home-btn').style.display = 'none';
- }
- });
+        window.addEventListener('appinstalled', () => {
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.querySelector('.add-to-home-btn').style.display = 'none';
+            }
+        });
 
- function addToHomeScreen() {
- if (deferredPrompt) {
- deferredPrompt.prompt();
- deferredPrompt.userChoice.then((choiceResult) => {
- if (choiceResult.outcome === 'accepted') {
- console.log('User accepted the A2HS prompt');
- } else {
- console.log('User dismissed the A2HS prompt');
- }
- deferredPrompt = null;
- });
- } else {
- alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
- }
- }
+        function addToHomeScreen() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
+            }
+        }
 
- // Tự động cuộn banner với vòng lặp khép kín
- const bannerContainer = document.getElementById('jobBannerContainer');
- const banners = bannerContainer.children;
- const totalBanners = 5; // Chỉ đếm 5 banner chính (bỏ 2 banner ẩn)
- const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right
- let currentIndex = 1; // Bắt đầu từ banner 1 (index 1)
+        // Tự động cuộn banner với vòng lặp khép kín
+        const bannerContainer = document.getElementById('jobBannerContainer');
+        const banners = bannerContainer.getElementsByClassName('job-banner');
+        const totalBanners = 5; // Số banner chính
+        const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right
+        let currentIndex = 1; // Bắt đầu từ banner 1 (index 1)
 
- // Đặt banner 1 ở giữa ban đầu
- function centerFirstBanner() {
- const containerWidth = bannerContainer.offsetWidth;
- const firstBannerOffset = (containerWidth - bannerWidth) / 2;
- bannerContainer.scrollLeft = firstBannerOffset; // Căn giữa banner 1
- }
+        // Đặt banner 1 ở giữa ban đầu
+        function centerFirstBanner() {
+            const containerWidth = bannerContainer.offsetWidth;
+            const firstBannerOffset = (containerWidth - bannerWidth) / 2;
+            bannerContainer.scrollLeft = firstBannerOffset + bannerWidth; // Bù banner clone đầu
+        }
 
- // Chuyển banner tự động mỗi 3 giây
- function autoScrollBanners() {
- currentIndex = (currentIndex + 1) % totalBanners;
- if (currentIndex === 0) currentIndex = totalBanners; // Đảm bảo không về 0
- const scrollPosition = (currentIndex + 1) * bannerWidth; // Cộng 1 để bù banner ẩn đầu
- bannerContainer.scrollBy({
- left: bannerWidth,
- behavior: 'smooth'
- });
- }
+        // Chuyển banner tự động mỗi 3 giây
+        function autoScrollBanners() {
+            currentIndex = (currentIndex % totalBanners) + 1;
+            const scrollPosition = currentIndex * bannerWidth;
+            bannerContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
 
- // Khởi động
- centerFirstBanner();
- const autoScrollInterval = setInterval(autoScrollBanners, 3000);
+            // Reset ẩn khi gần cuối
+            if (currentIndex === totalBanners) {
+                setTimeout(() => {
+                    bannerContainer.scrollLeft = bannerWidth; // Quay về banner 1 mượt mà
+                    currentIndex = 1;
+                }, 500); // Chờ hiệu ứng mượt hoàn tất
+            }
+        }
 
- // Dừng tự động khi cuộn thủ công
- bannerContainer.addEventListener('scroll', () => {
- clearInterval(autoScrollInterval);
- const scrollLeft = bannerContainer.scrollLeft;
- currentIndex = Math.round(scrollLeft / bannerWidth) - 1; // Bù banner ẩn đầu
- if (currentIndex < 1) currentIndex = totalBanners; // Đảm bảo vòng lặp
- if (currentIndex > totalBanners) currentIndex = 1;
- });
+        // Khởi động
+        centerFirstBanner();
+        const autoScrollInterval = setInterval(autoScrollBanners, 3000);
 
- // Tự động khởi động lại sau khi cuộn thủ công dừng
- let scrollTimeout;
- bannerContainer.addEventListener('scrollend', () => {
- scrollTimeout = setTimeout(() => {
- autoScrollInterval = setInterval(autoScrollBanners, 3000);
- }, 2000);
- });
- </script>
+        // Dừng tự động khi cuộn thủ công
+        bannerContainer.addEventListener('scroll', () => {
+            clearInterval(autoScrollInterval);
+            const scrollLeft = bannerContainer.scrollLeft;
+            currentIndex = Math.round(scrollLeft / bannerWidth);
+            if (currentIndex < 1) currentIndex = totalBanners;
+            if (currentIndex > totalBanners + 1) currentIndex = 1;
+        });
+
+        // Tự động khởi động lại sau khi cuộn thủ công dừng
+        let scrollTimeout;
+        bannerContainer.addEventListener('scrollend', () => {
+            scrollTimeout = setTimeout(() => {
+                autoScrollInterval = setInterval(autoScrollBanners, 3000);
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
