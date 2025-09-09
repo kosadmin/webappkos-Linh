@@ -141,7 +141,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 25px;
-            padding: 0;
             align-items: flex-start;
         }
 
@@ -179,7 +178,7 @@
             font-size: 1em;
             color: #495154;
             text-align: center;
-            max-width: 60px;
+            max-width: 70px;
             word-wrap: break-word;
             display: block;
             font-weight: bold;
@@ -289,6 +288,79 @@
                 max-width: 70px;
             }
         }
+
+        /* Phần Tin tuyển dụng HOT */
+        .hot-jobs-section {
+            padding: 20px 0;
+            margin: 20px 0 0;
+        }
+
+        .hot-jobs-section h2 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            margin: 0 0 20px 30px;
+            font-weight: bold;
+        }
+
+        .job-banner-container {
+            margin-left: 30px;
+            overflow-x: hidden; /* Ẩn thanh cuộn, dùng slider */
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .job-banner {
+            display: inline-block;
+            width: 300px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 20px;
+            border-radius: 10px;
+            vertical-align: top;
+        }
+
+        /* Nút điều hướng slider */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            z-index: 10;
+        }
+
+        .slider-btn {
+            background-color: rgba(253, 102, 0, 0.7);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5em;
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .job-banner {
+                width: 200px;
+                height: 100px;
+            }
+            .job-banner-container {
+                margin-left: 15px;
+            }
+            .slider-btn {
+                padding: 8px;
+                font-size: 1.2em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -312,15 +384,20 @@
                     <li><a href="#">Thông tin nộp thuế</a></li>
                 </ul>
             </li>
+            <li><a href="#">Tin tuyển dụng HOT</a>
+                <ul>
+                    <li><a href="#">Việc làm HOT tháng này</a></li>
+                    <li><a href="#">Việc làm HOT Hải Phòng</a></li>
+                    <li><a href="#">Việc làm HOT Hải Dương</a></li>
+                    <li><a href="#">Tổng hợp vị trí đang tuyển</a></li>
+                </ul>
+            </li>
             <li><a href="#">Dịch vụ - Tiện ích</a>
                 <ul>
                     <li><a href="#">Tìm nhà trọ</a></li>
                     <li><a href="#">Ứng lương online</a></li>
                     <li><a href="#">Giới thiệu ứng viên</a></li>
-                    <li><a href="#">Tra cứu tuyến xe</a></li>
                 </ul>
-            </li>
-            <li><a href="#">Thông báo mới</a>
             </li>
         </ul>
     </div>
@@ -330,7 +407,7 @@
         <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
         <p>Hệ sinh thái vì người lao động Việt Nam.</p>
 
-        <!-- Section Tra cứu và Dịch vụ - Tiện ích -->
+        <!-- Section Tra cứu và Tin tuyển dụng HOT -->
         <div class="search-section">
             <!-- Tra cứu -->
             <div class="lookup-section">
@@ -363,8 +440,25 @@
                 </div>
             </div>
 
+            <!-- Tin tuyển dụng HOT -->
+            <div class="hot-jobs-section">
+                <h2>Tin tuyển dụng HOT</h2>
+                <div class="job-banner-container" id="jobBannerContainer">
+                    <!-- Thêm bản sao ở đầu và cuối để tạo vòng lặp -->
+                    <div class="job-banner clone" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');" aria-hidden="true"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/zWGXFNqb/2.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/BVB2PCSN/3.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/mF1KxrYC/4.png');"></div>
+                    <div class="job-banner" style="background-image: url('https://i.ibb.co/bgmg8V97/5.png');"></div>
+                    <div class="job-banner clone" style="background-image: url('https://i.ibb.co/FbFXTQZ7/1.png');" aria-hidden="true"></div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="nextBtn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
 
-            
             <!-- Dịch vụ - Tiện ích -->
             <div class="service-section">
                 <h2>Dịch vụ - Tiện ích</h2>
@@ -391,17 +485,9 @@
                         <a href="#" class="btn">
                             <i class="fas fa-cogs"></i> <!-- Icon dịch vụ tổng quát -->
                         </a>
-                        <span class="btn-label">Tra cứu tuyến xe</span>
+                        <span class="btn-label">Dịch vụ 4</span>
                     </div>
                 </div>
-            </div>
-
-
-            
-            <!-- Thông báo mới -->
-            <div class="notification-section">
-                <h2>Thông báo mới</h2>
-                <p style="text-align: center;">Chưa có thông báo nào.</p>
             </div>
         </div>
     </div>
@@ -467,6 +553,73 @@
                 alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
             }
         }
+
+        // Slider banner
+        const bannerContainer = document.getElementById('jobBannerContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const banners = bannerContainer.getElementsByClassName('job-banner');
+        const totalBanners = 5; // Số banner chính
+        const bannerWidth = 320; // Độ rộng của mỗi banner + margin-right
+        let currentIndex = 1; // Bắt đầu từ banner 1 (index 1)
+
+        // Đặt banner 1 ở giữa ban đầu
+        function centerFirstBanner() {
+            const containerWidth = bannerContainer.offsetWidth;
+            const firstBannerOffset = (containerWidth - bannerWidth) / 2;
+            bannerContainer.scrollLeft = firstBannerOffset + bannerWidth; // Bù banner clone đầu
+        }
+
+        // Chuyển slide
+        function updateSlide(direction) {
+            if (direction === 'next') {
+                currentIndex = (currentIndex % totalBanners) + 1;
+            } else if (direction === 'prev') {
+                currentIndex = (currentIndex - 2 + totalBanners) % totalBanners + 1;
+            }
+            const scrollPosition = currentIndex * bannerWidth;
+            bannerContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+
+            // Reset ẩn khi gần cuối hoặc đầu
+            if (currentIndex === totalBanners) {
+                setTimeout(() => {
+                    bannerContainer.scrollLeft = bannerWidth;
+                    currentIndex = 1;
+                }, 500);
+            } else if (currentIndex === 0) {
+                setTimeout(() => {
+                    bannerContainer.scrollLeft = (totalBanners) * bannerWidth;
+                    currentIndex = totalBanners;
+                }, 500);
+            }
+        }
+
+        // Sự kiện nút
+        prevBtn.addEventListener('click', () => updateSlide('prev'));
+        nextBtn.addEventListener('click', () => updateSlide('next'));
+
+        // Hỗ trợ vuốt trên mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        bannerContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        bannerContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                updateSlide('next'); // Vuốt sang phải
+            } else if (touchEndX - touchStartX > 50) {
+                updateSlide('prev'); // Vuốt sang trái
+            }
+        });
+
+        // Khởi động
+        centerFirstBanner();
     </script>
 </body>
 </html>
