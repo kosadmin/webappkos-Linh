@@ -3,273 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Ký Dịch Vụ</title>
+    <title>Trang chủ - TRA CỨU LƯƠNG</title>
+    <link rel="manifest" href="/manifest.json"> <!-- Liên kết manifest cho PWA -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS */
-        * {
-            box-sizing: border-box;
-            /* Font chữ hiện đại, dễ đọc */
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+        /* Gradient background */
+        @font-face {
+            font-family: 'Lato';
+            src: url('/fonts/Lato Regular.ttf') format('truetype');
         }
+
         body {
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5; /* Màu nền nhẹ nhàng hơn */
-            color: #1c1e21; /* Màu chữ đậm hơn một chút cho dễ đọc */
+            background: linear-gradient(to bottom, #FBD72B 0%, #FD6600 100%);
+            min-height: 100vh;
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            color: #17173D;
         }
-        .container {
+
+        /* Thanh header cố định */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 550px; /* Giảm nhẹ kích thước để tập trung hơn */
-            margin: 30px auto; /* Thêm margin trên dưới */
-            padding: 0 20px;
+            background-color: rgba(253, 102, 0, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000;
+            min-height: 60px;
         }
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background-color: #007bff; /* Màu xanh dương hiện đại hơn */
-            color: white;
-            border-radius: 10px 10px 0 0;
+
+        /* Logo */
+        .logo {
+            max-height: 40px;
+            height: 40px;
+            width: auto !important;
+            object-fit: contain;
+            max-width: none;
+            flex-shrink: 0;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        header p {
-            margin: 5px 0 0;
-            opacity: 0.9;
-        }
-        .form-container {
-            background-color: white;
-            padding: 30px; /* Tăng padding */
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow rõ hơn */
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ced4da; /* Màu border tinh tế hơn */
-            border-radius: 6px; /* Bo góc nhẹ */
-            font-size: 16px;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: #007bff;
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-        button {
-            background-color: #28a745; /* Màu xanh lá cây cho hành động "Đăng ký" */
-            color: white;
+
+        /* Nút menu 3 gạch */
+        .menu-toggle {
+            font-size: 24px;
+            background: none;
             border: none;
-            padding: 14px 20px;
-            border-radius: 6px;
+            color: white;
             cursor: pointer;
-            width: 100%;
-            font-size: 18px; /* Chữ lớn hơn */
-            font-weight: 700;
-            transition: background-color 0.3s, transform 0.1s;
         }
-        button:hover {
-            background-color: #218838;
-            transform: translateY(-1px);
+
+        /* Menu sidebar */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(253, 102, 0, 0.9);
+            padding: 50px;
+            transition: 0.3s;
+            z-index: 1000;
         }
-        button:active {
-            transform: translateY(0);
+
+        .sidebar.active {
+            right: 0;
         }
-        #result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            display: none;
-            font-weight: 500;
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
         }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+
+        .sidebar ul li {
+            margin: 15px 0;
         }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
         }
-        .loading {
-            display: none;
+
+        .sidebar ul li > a {
+            font-weight: bold;
+        }
+
+        .sidebar ul li ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul li ul li a {
+            font-size: 16px;
+        }
+
+        /* Nội dung chính */
+        .content {
+            padding: 170px 0 0;
             text-align: center;
-            margin-top: 20px;
-            padding: 15px;
         }
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #007bff;
+
+        /* Tiêu đề chính */
+        .content h1 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            font-weight: bold;
+        }
+
+        /* Section với nền #FFFFFF */
+        .search-section {
+            background-color: #FFFFFF;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            margin: 20px 0 0;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .search-section h2 {
+            color: #B70E0E;
+            font-size: 1.25em;
+            margin: 0 0 20px 30px;
+            font-weight: bold;
+        }
+
+        .search-section .btn-container {
+            margin-left: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0;
+            align-items: flex-start;
+            justify-content: flex-start; /* Căn trái đồng nhất */
+        }
+
+        .search-section .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 0;
+            padding: 10px;
+            background-color: #FFFFFF;
+            color: #FD6600;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+            border: none;
+            outline: none;
+            transition: transform 0.2s, background-color 0.2s, color 0.2s;
+        }
+
+        .search-section .btn:hover,
+        .search-section .btn:active {
+            background-color: #FD6600;
+            color: #FFFFFF;
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+        }
+
+        .search-section .btn i {
+            font-size: 1.8em;
+        }
+
+        .btn-label {
+            margin-top: 7px;
+            font-size: 1em;
+            color: #495154;
+            text-align: center;
+            max-width: 65px;
+            word-wrap: break-word;
+            display: block;
+            font-weight: bold;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 65px;
+        }
+
+        /* Nút Add to Home Screen */
+        .add-to-home-btn {
+            position: fixed;
+            left: 20px;
+            top: 80%;
+            width: 60px;
+            height: 60px;
+            background-color: #FD6600;
+            color: #FFFFFF;
+            border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .add-to-home-btn:hover {
+            background-color: #FF4500;
+            transform: translateY(-55px);
         }
-        @media (max-width: 600px) {
-            .container {
-                margin: 0 auto;
-                padding: 0;
+
+        .add-to-home-btn i {
+            font-size: 1.5em;
+        }
+
+        /* Bóng thoại (tooltip) */
+        .add-to-home-tooltip {
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            transform: translateY(-50%);
+            background-color: #FFFFFF;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            white-space: nowrap;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: 0 0 15px rgba(204, 199, 188, 0.6);
+            transition: transform 0.2s;
+        }
+
+        .add-to-home-btn:hover .add-to-home-tooltip {
+            transform: translateY(-55px);
+        }
+
+        /* Responsive cho nút Add to Home Screen */
+        @media (max-width: 768px) {
+            .add-to-home-btn {
+                left: 10px;
+                width: 50px;
+                height: 50px;
+                top: 80%;
             }
-            header {
+            .add-to-home-btn i {
+                font-size: 1.2em;
+            }
+            .add-to-home-tooltip {
+                left: 70px;
+                font-size: 0.9em;
+                padding: 4px 8px;
+            }
+            .add-to-home-btn:hover {
+                transform: translateY(-45px);
+            }
+            .add-to-home-btn:hover .add-to-home-tooltip {
+                transform: translateY(-45px);
+            }
+            .lookup-section, .service-section, .notification-section {
+                margin-bottom: 20px; /* Giãn cách giữa các section trên mobile */
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 90px 0 0;
+            }
+            .logo {
+                max-width: none;
+                height: 35px;
+            }
+            .search-section .btn {
+                width: 55px;
+                height: 55px;
                 border-radius: 0;
             }
-            .form-container {
-                border-radius: 0;
+            .search-section .btn i {
+                font-size: 1.35em;
+            }
+            .btn-label {
+                font-size: 0.9em;
+                max-width: 70px;
             }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>Đăng Ký Dịch Vụ</h1>
-        <p>Điền thông tin để đăng ký sử dụng dịch vụ của chúng tôi</p>
-    </header>
-    
-    <div class="form-container">
-        <form id="serviceForm">
-            <div class="form-group">
-                <label for="fullName">Họ và tên *</label>
-                <input type="text" id="fullName" name="fullName" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Số điện thoại *</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="company">Tên công ty (nếu có)</label>
-                <input type="text" id="company" name="company">
-            </div>
-            
-            <div class="form-group">
-                <label for="service">Dịch vụ đăng ký *</label>
-                <select id="service" name="service" required>
-                    <option value="" disabled selected>-- Chọn dịch vụ --</option>
-                    <option value="basic">Gói Cơ bản</option>
-                    <option value="standard">Gói Tiêu chuẩn</option>
-                    <option value="premium">Gói Cao cấp</option>
-                    <option value="custom">Gói Tùy chỉnh</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Yêu cầu thêm</label>
-                <textarea id="message" name="message" rows="4" placeholder="Ví dụ: Cần tư vấn thêm về gói Cao cấp..."></textarea>
-            </div>
-            
-            <button type="submit">Đăng Ký Ngay</button>
-        </form>
-        
-        <div class="loading">
-            <div class="spinner"></div>
-            <p>Đang xử lý yêu cầu...</p>
-        </div>
-        
-        <div id="result"></div>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://i.ibb.co/KzQ44nsH/logo-tr-ng-ngang.png" alt="Logo" class="logo">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-</div>
 
-<script>
-    // JavaScript
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('serviceForm');
-        const resultElement = document.getElementById('result');
-        const loadingElement = document.querySelector('.loading');
-        const webhookUrl = ''; // Cập nhật URL webhook tại đây
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="#">Tra cứu</a>
+                <ul>
+                    <li><a href="salary-lookup.html">Lương</a></li>
+                    <li><a href="#">Bảng công</a></li>
+                    <li><a href="#">BHXH</a></li>
+                    <li><a href="#">Thông tin nộp thuế</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Dịch vụ - Tiện ích</a>
+                <ul>
+                    <li><a href="#">Tìm nhà trọ</a></li>
+                    <li><a href="#">Ứng lương online</a></li>
+                    <li><a href="#">Giới thiệu ứng viên</a></li>
+                    <li><a href="#">Tra cứu tuyến xe</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Thông báo mới</a>
+            </li>
+        </ul>
+    </div>
 
-        // Hàm hiển thị kết quả
-        const showResult = (message, type) => {
-            resultElement.textContent = message;
-            resultElement.className = type;
-            resultElement.style.display = 'block';
-            loadingElement.style.display = 'none';
-        };
+    <!-- Nội dung chính -->
+    <div class="content">
+        <h1>Chào mừng đến với VIỆC LÀM KOS</h1>
+        <p>Hệ sinh thái vì người lao động Việt Nam.</p>
 
-        // Hàm gửi dữ liệu
-        const submitForm = async (e) => {
+        <!-- Section Tra cứu và Dịch vụ - Tiện ích -->
+        <div class="search-section">
+            <!-- Tra cứu -->
+            <div class="lookup-section">
+                <h2>Tra cứu</h2>
+                <div class="btn-container">
+                    <div class="btn-group">
+                        <a href="salary-lookup.html" class="btn">
+                            <i class="fas fa-coins"></i>
+                        </a>
+                        <span class="btn-label">Lương</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-table"></i>
+                        </a>
+                        <span class="btn-label">Bảng công</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-shield-alt"></i>
+                        </a>
+                        <span class="btn-label">BHXH</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-file-invoice"></i>
+                        </a>
+                        <span class="btn-label">Thông tin nộp thuế</span>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <!-- Dịch vụ - Tiện ích -->
+            <div class="service-section">
+                <h2>Dịch vụ - Tiện ích</h2>
+                <div class="btn-container">
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-home"></i> <!-- Icon nhà ở -->
+                        </a>
+                        <span class="btn-label">Tìm nhà trọ</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-money-bill-wave"></i> <!-- Icon tiền mặt online -->
+                        </a>
+                        <span class="btn-label">Ứng lương online</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-user-tie"></i> <!-- Icon ứng viên -->
+                        </a>
+                        <span class="btn-label">Giới thiệu ứng viên</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn">
+                            <i class="fas fa-cogs"></i> <!-- Icon dịch vụ tổng quát -->
+                        </a>
+                        <span class="btn-label">Tra cứu tuyến xe</span>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <!-- Thông báo mới -->
+            <div class="notification-section">
+                <h2>Thông báo mới</h2>
+                <p style="text-align: center;">Chưa có thông báo nào.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút Add to Home Screen với tooltip -->
+    <button class="add-to-home-btn" onclick="addToHomeScreen()">
+        <i class="fas fa-plus"></i>
+        <span class="add-to-home-tooltip">Thêm vào màn hình chính</span>
+    </button>
+
+    <script>
+        // Đăng ký service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(() => {
+                console.log('Service Worker registered');
+            }).catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
+            deferredPrompt = e;
+            document.querySelector('.add-to-home-btn').style.display = 'flex';
+        });
 
-            // Hiển thị loading và ẩn kết quả cũ
-            loadingElement.style.display = 'block';
-            resultElement.style.display = 'none';
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            document.querySelector('.add-to-home-btn').style.display = 'none';
+        }
 
-            // Lấy dữ liệu form
-            const formData = new FormData(form);
-            // Chuyển FormData thành đối tượng JSON
-            const data = Object.fromEntries(formData.entries());
-
-            // Kiểm tra dịch vụ đã chọn
-            if (data.service === "") {
-                showResult('Vui lòng chọn một dịch vụ để tiếp tục.', 'error');
-                return;
+        window.addEventListener('appinstalled', () => {
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.querySelector('.add-to-home-btn').style.display = 'none';
             }
+        });
 
-            // Xử lý khi chưa có webhook
-            if (!webhookUrl) {
-                // Giả lập thời gian chờ
-                setTimeout(() => {
-                    // Cung cấp thông báo thành công giả lập
-                    showResult('Đăng ký thành công! (Demo). Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
-                    // Xóa form sau khi đăng ký thành công (tùy chọn)
-                    form.reset();
-                }, 2000); // 2 giây
-                return;
-            }
-
-            // Gửi dữ liệu đến webhook
-            try {
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
+        function addToHomeScreen() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
                 });
-
-                if (!response.ok) {
-                    throw new Error(`Lỗi HTTP: ${response.status}`);
-                }
-
-                // Có thể xử lý data trả về nếu webhook có phản hồi JSON
-                // const responseData = await response.json(); 
-
-                showResult('Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
-                // Xóa form sau khi đăng ký thành công
-                form.reset();
-
-            } catch (error) {
-                console.error('Lỗi gửi form:', error);
-                showResult('Đã xảy ra lỗi trong quá trình gửi: ' + error.message, 'error');
+            } else {
+                alert('Vui lòng sử dụng trình duyệt hỗ trợ PWA (như Chrome) và truy cập qua HTTPS để sử dụng tính năng này.');
             }
-        };
-
-        form.addEventListener('submit', submitForm);
-    });
-</script>
-
+        }
+    </script>
 </body>
 </html>
