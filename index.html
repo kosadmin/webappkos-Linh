@@ -1,110 +1,143 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng Ký Dịch Vụ</title>
-<style>
-    * {
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-        color: #333;
-    }
-    .container {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    header {
-        text-align: center;
-        padding: 20px 0;
-        background-color: #0066cc;
-        color: white;
-        border-radius: 8px 8px 0 0;
-        margin-bottom: 20px;
-    }
-    .form-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    .form-group {
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-    }
-    input, select, textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-    }
-    button {
-        background-color: #0066cc;
-        color: white;
-        border: none;
-        padding: 14px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 100%;
-        font-size: 16px;
-        font-weight: 600;
-        transition: background-color 0.3s;
-    }
-    button:hover {
-        background-color: #0055aa;
-    }
-    #result {
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 4px;
-        display: none;
-    }
-    .success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-    }
-    .error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-    }
-    .loading {
-        display: none;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .spinner {
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #0066cc;
-        border-radius: 50%;
-        width: 30px;
-       height: 30px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-    }
-    @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-    }
-    @media (max-width: 480px) {
-    .container {
-    padding: 10px;
-    }
-    .form-container {
-    padding: 15px;
-    }
-    }
-    <div class="container">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Dịch Vụ</title>
+    <style>
+        /* CSS */
+        * {
+            box-sizing: border-box;
+            /* Font chữ hiện đại, dễ đọc */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Màu nền nhẹ nhàng hơn */
+            color: #1c1e21; /* Màu chữ đậm hơn một chút cho dễ đọc */
+        }
+        .container {
+            width: 100%;
+            max-width: 550px; /* Giảm nhẹ kích thước để tập trung hơn */
+            margin: 30px auto; /* Thêm margin trên dưới */
+            padding: 0 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #007bff; /* Màu xanh dương hiện đại hơn */
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        header p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px; /* Tăng padding */
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow rõ hơn */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da; /* Màu border tinh tế hơn */
+            border-radius: 6px; /* Bo góc nhẹ */
+            font-size: 16px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        button {
+            background-color: #28a745; /* Màu xanh lá cây cho hành động "Đăng ký" */
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px; /* Chữ lớn hơn */
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            font-weight: 500;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0 auto;
+                padding: 0;
+            }
+            header {
+                border-radius: 0;
+            }
+            .form-container {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
     <header>
         <h1>Đăng Ký Dịch Vụ</h1>
         <p>Điền thông tin để đăng ký sử dụng dịch vụ của chúng tôi</p>
@@ -114,28 +147,28 @@
         <form id="serviceForm">
             <div class="form-group">
                 <label for="fullName">Họ và tên *</label>
-                <input type="text" id="fullName" name="fullName" required="">
+                <input type="text" id="fullName" name="fullName" required>
             </div>
             
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required="">
+                <input type="email" id="email" name="email" required>
             </div>
             
             <div class="form-group">
                 <label for="phone">Số điện thoại *</label>
-                <input type="tel" id="phone" name="phone" required="">
+                <input type="tel" id="phone" name="phone" required>
             </div>
             
             <div class="form-group">
-                <label for="company">Tên công ty</label>
+                <label for="company">Tên công ty (nếu có)</label>
                 <input type="text" id="company" name="company">
             </div>
             
             <div class="form-group">
                 <label for="service">Dịch vụ đăng ký *</label>
-                <select id="service" name="service" required="">
-                    <option value="">-- Chọn dịch vụ --</option>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>-- Chọn dịch vụ --</option>
                     <option value="basic">Gói Cơ bản</option>
                     <option value="standard">Gói Tiêu chuẩn</option>
                     <option value="premium">Gói Cao cấp</option>
@@ -145,7 +178,7 @@
             
             <div class="form-group">
                 <label for="message">Yêu cầu thêm</label>
-                <textarea id="message" name="message" rows="4"></textarea>
+                <textarea id="message" name="message" rows="4" placeholder="Ví dụ: Cần tư vấn thêm về gói Cao cấp..."></textarea>
             </div>
             
             <button type="submit">Đăng Ký Ngay</button>
@@ -159,68 +192,84 @@
         <div id="result"></div>
     </div>
 </div>
-    <script>
-    document.getElementById('serviceForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Hiển thị loading
-        document.querySelector('.loading').style.display = 'block';
-        
-        // Ẩn kết quả cũ nếu có
-        document.getElementById('result').style.display = 'none';
-        
-        // Thu thập dữ liệu form
-        const formData = {
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            company: document.getElementById('company').value,
-            service: document.getElementById('service').value,
-            message: document.getElementById('message').value
-        };
-        
-        // URL webhook (để trống như yêu cầu, sẽ cần cập nhật sau)
-        const webhookUrl = '';
-        
-        // Kiểm tra nếu URL webhook chưa được cung cấp
-        if (!webhookUrl) {
-            setTimeout(() => {
-                showResult('Chức năng đang được phát triển. Vui lòng cung cấp URL webhook để kích hoạt tính năng này.', 'error');
-            }, 1000);
-            return;
-        }
-        
-        // Gửi dữ liệu đến webhook
-        fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Lỗi kết nối đến máy chủ');
-            }
-            return response.json();
-        })
-        .then(data => {
-            showResult('Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
-        })
-        .catch(error => {
-            showResult('Đã xảy ra lỗi: ' + error.message, 'error');
-        });
-        
-        // Hàm giả lập để demo (sẽ xóa khi có webhook thực)
-        setTimeout(() => {
-            showResult('Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
-        }, 2000);
-    });
-    
-    function showResult(message, type) {
+
+<script>
+    // JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('serviceForm');
         const resultElement = document.getElementById('result');
-        resultElement.textContent = message;
-resultElement.className = type;
-resultElement.style.display = 'block';
-document.querySelector('.loading').style.display = 'none';
-}
+        const loadingElement = document.querySelector('.loading');
+        const webhookUrl = ''; // Cập nhật URL webhook tại đây
+
+        // Hàm hiển thị kết quả
+        const showResult = (message, type) => {
+            resultElement.textContent = message;
+            resultElement.className = type;
+            resultElement.style.display = 'block';
+            loadingElement.style.display = 'none';
+        };
+
+        // Hàm gửi dữ liệu
+        const submitForm = async (e) => {
+            e.preventDefault();
+
+            // Hiển thị loading và ẩn kết quả cũ
+            loadingElement.style.display = 'block';
+            resultElement.style.display = 'none';
+
+            // Lấy dữ liệu form
+            const formData = new FormData(form);
+            // Chuyển FormData thành đối tượng JSON
+            const data = Object.fromEntries(formData.entries());
+
+            // Kiểm tra dịch vụ đã chọn
+            if (data.service === "") {
+                showResult('Vui lòng chọn một dịch vụ để tiếp tục.', 'error');
+                return;
+            }
+
+            // Xử lý khi chưa có webhook
+            if (!webhookUrl) {
+                // Giả lập thời gian chờ
+                setTimeout(() => {
+                    // Cung cấp thông báo thành công giả lập
+                    showResult('Đăng ký thành công! (Demo). Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
+                    // Xóa form sau khi đăng ký thành công (tùy chọn)
+                    form.reset();
+                }, 2000); // 2 giây
+                return;
+            }
+
+            // Gửi dữ liệu đến webhook
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Lỗi HTTP: ${response.status}`);
+                }
+
+                // Có thể xử lý data trả về nếu webhook có phản hồi JSON
+                // const responseData = await response.json(); 
+
+                showResult('Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.', 'success');
+                // Xóa form sau khi đăng ký thành công
+                form.reset();
+
+            } catch (error) {
+                console.error('Lỗi gửi form:', error);
+                showResult('Đã xảy ra lỗi trong quá trình gửi: ' + error.message, 'error');
+            }
+        };
+
+        form.addEventListener('submit', submitForm);
+    });
+</script>
+
+</body>
+</html>
